@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.10-b140319.1121 svn-revision#7b34660d6bc70e587e8ec81a17e4d76af68816a6. --><definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://cb.ukrpay.net/common/ws" xmlns:nsuser="http://cb.ukrpay.net/common/ws/user" name="UserWebService" targetNamespace="http://cb.ukrpay.net/common/ws">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://cb.ukrpay.net/common/ws/user" schemaLocation="http://10.1.15.19:7001/backend/common/userapi?xsd=2"/>
+        </xsd:schema>
+    </types>
+    <message name="authenticate">
+        <part name="parameters" element="nsuser:authenticate">
+        </part>
+    </message>
+    <message name="authenticateResponse">
+        <part name="return" element="nsuser:authenticateResponse">
+        </part>
+    </message>
+    <message name="checkSession">
+        <part name="parameters" element="nsuser:checkSession">
+        </part>
+    </message>
+    <message name="checkSessionResponse">
+        <part name="return" element="nsuser:checkSessionResponse">
+        </part>
+    </message>
+    <message name="logout">
+        <part name="parameters" element="nsuser:logout">
+        </part>
+    </message>
+    <message name="logoutResponse">
+        <part name="return" element="nsuser:logoutResponse">
+        </part>
+    </message>
+    <message name="checkAuthOtp">
+        <part name="parameters" element="nsuser:checkAuthOtp">
+        </part>
+    </message>
+    <message name="checkAuthOtpResponse">
+        <part name="return" element="nsuser:checkAuthOtpResponse">
+        </part>
+    </message>
+    <message name="checkAccessCode">
+        <part name="parameters" element="nsuser:checkAccessCode">
+        </part>
+    </message>
+    <message name="checkAccessCodeResponse">
+        <part name="return" element="nsuser:checkAccessCodeResponse">
+        </part>
+    </message>
+    <message name="changePass">
+        <part name="parameters" element="nsuser:changePass">
+        </part>
+    </message>
+    <message name="changePassResponse">
+        <part name="return" element="nsuser:changePassResponse">
+        </part>
+    </message>
+    <message name="restorePass">
+        <part name="parameters" element="nsuser:restorePass">
+        </part>
+    </message>
+    <message name="restorePassResponse">
+        <part name="return" element="nsuser:restorePassResponse">
+        </part>
+    </message>
+    <message name="getPassCfg">
+        <part name="parameters" element="nsuser:getPassCfg">
+        </part>
+    </message>
+    <message name="getPassCfgResponse">
+        <part name="return" element="nsuser:getPassCfgResponse">
+        </part>
+    </message>
+    <message name="createUserPrepare">
+        <part name="parameters" element="nsuser:createUserPrepare">
+        </part>
+    </message>
+    <message name="createUserPrepareResponse">
+        <part name="return" element="nsuser:createUserPrepareResponse">
+        </part>
+    </message>
+    <message name="createUserOtp">
+        <part name="parameters" element="nsuser:createUserOtp">
+        </part>
+    </message>
+    <message name="createUserOtpResponse">
+        <part name="return" element="nsuser:createUserOtpResponse">
+        </part>
+    </message>
+
+    <portType name="UserWebService">
+        <operation name="authenticate">
+            <input message="tns:authenticate">
+            </input>
+            <output message="tns:authenticateResponse">
+            </output>
+        </operation>
+        <operation name="checkSession">
+            <input message="tns:checkSession">
+            </input>
+            <output message="tns:checkSessionResponse">
+            </output>
+        </operation>
+        <operation name="logout">
+            <input message="tns:logout">
+            </input>
+            <output message="tns:logoutResponse">
+            </output>
+        </operation>
+        <operation name="checkAuthOtp">
+            <input message="tns:checkAuthOtp">
+            </input>
+            <output message="tns:checkAuthOtpResponse">
+            </output>
+        </operation>
+        <operation name="checkAccessCode">
+            <input message="tns:checkAccessCode">
+            </input>
+            <output message="tns:checkAccessCodeResponse">
+            </output>
+        </operation>
+        <operation name="changePass">
+            <input message="tns:changePass">
+            </input>
+            <output message="tns:changePassResponse">
+            </output>
+        </operation>
+        <operation name="restorePass">
+            <input message="tns:restorePass">
+            </input>
+            <output message="tns:restorePassResponse">
+            </output>
+        </operation>
+        <operation name="getPassCfg">
+            <input message="tns:getPassCfg">
+            </input>
+            <output message="tns:getPassCfgResponse">
+            </output>
+        </operation>
+        <operation name="createUserPrepare">
+            <input message="tns:createUserPrepare">
+            </input>
+            <output message="tns:createUserPrepareResponse">
+            </output>
+        </operation>
+        <operation name="createUserOtp">
+            <input message="tns:createUserOtp">
+            </input>
+            <output message="tns:createUserOtpResponse">
+            </output>
+        </operation>
+    </portType>
+    <binding name="UserWebServiceSOAPHttpPortBinding" type="tns:UserWebService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="authenticate">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="checkSession">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="logout">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="checkAuthOtp">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="checkAccessCode">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="changePass">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="restorePass">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getPassCfg">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createUserPrepare">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createUserOtp">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="UserWebService">
+        <port name="UserWebServiceSOAPHttpPort" binding="tns:UserWebServiceSOAPHttpPortBinding">
+            <soap:address location="http://10.1.15.19:7001/backend/common/userapi"/>
+        </port>
+    </service>
+</definitions>

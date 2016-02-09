@@ -1,0 +1,387 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.10-b140319.1121 svn-revision#7b34660d6bc70e587e8ec81a17e4d76af68816a6. --><definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://cb.ukrpay.net/common/ws" xmlns:nsproduct="http://cb.ukrpay.net/common/ws/product" name="ProductWebService" targetNamespace="http://cb.ukrpay.net/common/ws">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://cb.ukrpay.net/common/ws/product" schemaLocation="http://10.1.15.19:7001/backend/common/productapi?xsd=2"/>
+        </xsd:schema>
+    </types>
+    <message name="getClientProductList">
+        <part name="parameters" element="nsproduct:getClientProductList">
+        </part>
+    </message>
+    <message name="getClientProductListResponse">
+        <part name="return" element="nsproduct:getClientProductListResponse">
+        </part>
+    </message>
+    <message name="getClientFullProduct">
+        <part name="parameters" element="nsproduct:getClientFullProduct">
+        </part>
+    </message>
+    <message name="getClientFullProductResponse">
+        <part name="return" element="nsproduct:getClientFullProductResponse">
+        </part>
+    </message>
+    <message name="getPayProductList">
+        <part name="parameters" element="nsproduct:getPayProductList">
+        </part>
+    </message>
+    <message name="getPayProductListResponse">
+        <part name="return" element="nsproduct:getPayProductListResponse">
+        </part>
+    </message>
+    <message name="getAlgList">
+        <part name="parameters" element="nsproduct:getAlgList">
+        </part>
+    </message>
+    <message name="getAlgListResponse">
+        <part name="return" element="nsproduct:getAlgListResponse">
+        </part>
+    </message>
+    <message name="getStatementMini">
+        <part name="parameters" element="nsproduct:getStatementMini">
+        </part>
+    </message>
+    <message name="getStatementMiniResponse">
+        <part name="return" element="nsproduct:getStatementMiniResponse">
+        </part>
+    </message>
+    <message name="checkOperOtp">
+        <part name="parameters" element="nsproduct:checkOperOtp">
+        </part>
+    </message>
+    <message name="checkOperOtpResponse">
+        <part name="return" element="nsproduct:checkOperOtpResponse">
+        </part>
+    </message>
+    <message name="getOperList">
+        <part name="parameters" element="nsproduct:getOperList">
+        </part>
+    </message>
+    <message name="getOperListResponse">
+        <part name="return" element="nsproduct:getOperListResponse">
+        </part>
+    </message>
+    <message name="getOperFull">
+        <part name="parameters" element="nsproduct:getOperFull">
+        </part>
+    </message>
+    <message name="getOperFullResponse">
+        <part name="return" element="nsproduct:getOperFullResponse">
+        </part>
+    </message>
+    <message name="createOperSendClientProduct">
+        <part name="parameters" element="nsproduct:createOperSendClientProduct">
+        </part>
+    </message>
+    <message name="createOperSendClientProductResponse">
+        <part name="return" element="nsproduct:createOperSendClientProductResponse">
+        </part>
+    </message>
+    <message name="createOperSendLocalAcc">
+        <part name="parameters" element="nsproduct:createOperSendLocalAcc">
+        </part>
+    </message>
+    <message name="createOperSendLocalAccResponse">
+        <part name="return" element="nsproduct:createOperSendLocalAccResponse">
+        </part>
+    </message>
+    <message name="createOperSendLocalCard">
+        <part name="parameters" element="nsproduct:createOperSendLocalCard">
+        </part>
+    </message>
+    <message name="createOperSendLocalCardResponse">
+        <part name="return" element="nsproduct:createOperSendLocalCardResponse">
+        </part>
+    </message>
+    <message name="createOperSendCountryAcc">
+        <part name="parameters" element="nsproduct:createOperSendCountryAcc">
+        </part>
+    </message>
+    <message name="createOperSendCountryAccResponse">
+        <part name="return" element="nsproduct:createOperSendCountryAccResponse">
+        </part>
+    </message>
+    <message name="createOperSendCountryCard">
+        <part name="parameters" element="nsproduct:createOperSendCountryCard">
+        </part>
+    </message>
+    <message name="createOperSendCountryCardResponse">
+        <part name="return" element="nsproduct:createOperSendCountryCardResponse">
+        </part>
+    </message>
+    <message name="createOperResvClientProduct">
+        <part name="parameters" element="nsproduct:createOperResvClientProduct">
+        </part>
+    </message>
+    <message name="createOperResvClientProductResponse">
+        <part name="return" element="nsproduct:createOperResvClientProductResponse">
+        </part>
+    </message>
+    <message name="createOperPayServ">
+        <part name="parameters" element="nsproduct:createOperPayServ">
+        </part>
+    </message>
+    <message name="createOperPayServResponse">
+        <part name="return" element="nsproduct:createOperPayServResponse">
+        </part>
+    </message>
+    <message name="createOperStateChange">
+        <part name="parameters" element="nsproduct:createOperStateChange">
+        </part>
+    </message>
+    <message name="createOperStateChangeResponse">
+        <part name="return" element="nsproduct:createOperStateChangeResponse">
+        </part>
+    </message>
+
+
+    <portType name="ProductWebService">
+        <operation name="getClientProductList">
+            <input message="tns:getClientProductList">
+            </input>
+            <output message="tns:getClientProductListResponse">
+            </output>
+        </operation>
+        <operation name="getClientFullProduct">
+            <input message="tns:getClientFullProduct">
+            </input>
+            <output message="tns:getClientFullProductResponse">
+            </output>
+        </operation>
+        <operation name="getPayProductList">
+            <input message="tns:getPayProductList">
+            </input>
+            <output message="tns:getPayProductListResponse">
+            </output>
+        </operation>
+        <operation name="getAlgList">
+            <input message="tns:getAlgList">
+            </input>
+            <output message="tns:getAlgListResponse">
+            </output>
+        </operation>
+        <operation name="getStatementMini">
+            <input message="tns:getStatementMini">
+            </input>
+            <output message="tns:getStatementMiniResponse">
+            </output>
+        </operation>
+        <operation name="checkOperOtp">
+            <input message="tns:checkOperOtp">
+            </input>
+            <output message="tns:checkOperOtpResponse">
+            </output>
+        </operation>
+        <operation name="getOperList">
+            <input message="tns:getOperList">
+            </input>
+            <output message="tns:getOperListResponse">
+            </output>
+        </operation>
+        <operation name="getOperFull">
+            <input message="tns:getOperFull">
+            </input>
+            <output message="tns:getOperFullResponse">
+            </output>
+        </operation>
+        <operation name="createOperSendClientProduct">
+            <input message="tns:createOperSendClientProduct">
+            </input>
+            <output message="tns:createOperSendClientProductResponse">
+            </output>
+        </operation>
+        <operation name="createOperSendLocalAcc">
+            <input message="tns:createOperSendLocalAcc">
+            </input>
+            <output message="tns:createOperSendLocalAccResponse">
+            </output>
+        </operation>
+        <operation name="createOperSendLocalCard">
+            <input message="tns:createOperSendLocalCard">
+            </input>
+            <output message="tns:createOperSendLocalCardResponse">
+            </output>
+        </operation>
+        <operation name="createOperSendCountryAcc">
+            <input message="tns:createOperSendCountryAcc">
+            </input>
+            <output message="tns:createOperSendCountryAccResponse">
+            </output>
+        </operation>
+        <operation name="createOperSendCountryCard">
+            <input message="tns:createOperSendCountryCard">
+            </input>
+            <output message="tns:createOperSendCountryCardResponse">
+            </output>
+        </operation>
+        <operation name="createOperResvClientProduct">
+            <input message="tns:createOperResvClientProduct">
+            </input>
+            <output message="tns:createOperResvClientProductResponse">
+            </output>
+        </operation>
+        <operation name="createOperPayServ">
+            <input message="tns:createOperPayServ">
+            </input>
+            <output message="tns:createOperPayServResponse">
+            </output>
+        </operation>
+        <operation name="createOperStateChange">
+            <input message="tns:createOperStateChange">
+            </input>
+            <output message="tns:createOperStateChangeResponse">
+            </output>
+        </operation>
+    </portType>
+    <binding name="ProductWebServiceSOAPHttpPortBinding" type="tns:ProductWebService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getClientProductList">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getClientFullProduct">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getPayProductList">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getAlgList">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getStatementMini">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="checkOperOtp">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getOperList">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getOperFull">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createOperSendClientProduct">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createOperSendLocalAcc">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createOperSendLocalCard">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createOperSendCountryAcc">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createOperSendCountryCard">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createOperResvClientProduct">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createOperPayServ">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createOperStateChange">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="ProductWebService">
+        <port name="ProductWebServiceSOAPHttpPort" binding="tns:ProductWebServiceSOAPHttpPortBinding">
+            <soap:address location="http://10.1.15.19:7001/backend/common/productapi"/>
+        </port>
+    </service>
+</definitions>

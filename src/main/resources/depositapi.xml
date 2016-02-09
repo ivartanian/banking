@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.10-b140319.1121 svn-revision#7b34660d6bc70e587e8ec81a17e4d76af68816a6. --><definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://cb.ukrpay.net/common/ws" xmlns:nsproduct="http://cb.ukrpay.net/common/ws/product" name="DepositWebService" targetNamespace="http://cb.ukrpay.net/common/ws">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://cb.ukrpay.net/common/ws/product" schemaLocation="http://10.1.15.19:7001/backend/common/depositapi?xsd=2"/>
+        </xsd:schema>
+    </types>
+    <message name="getBankDepositListAllowOpen">
+        <part name="parameters" element="nsproduct:getBankDepositListAllowOpen">
+        </part>
+    </message>
+    <message name="getBankDepositListAllowOpenResponse">
+        <part name="return" element="nsproduct:getBankDepositListAllowOpenResponse">
+        </part>
+    </message>
+    <message name="createBankDepositOpen">
+        <part name="parameters" element="nsproduct:createBankDepositOpen">
+        </part>
+    </message>
+    <message name="createBankDepositOpenResponse">
+        <part name="return" element="nsproduct:createBankDepositOpenResponse">
+        </part>
+    </message>
+
+    <portType name="DepositWebService">
+        <operation name="getBankDepositListAllowOpen">
+            <input message="tns:getBankDepositListAllowOpen">
+            </input>
+            <output message="tns:getBankDepositListAllowOpenResponse">
+            </output>
+        </operation>
+        <operation name="createBankDepositOpen">
+            <input message="tns:createBankDepositOpen">
+            </input>
+            <output message="tns:createBankDepositOpenResponse">
+            </output>
+        </operation>
+    </portType>
+    <binding name="DepositWebServiceSOAPHttpPortBinding" type="tns:DepositWebService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getBankDepositListAllowOpen">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createBankDepositOpen">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="DepositWebService">
+        <port name="DepositWebServiceSOAPHttpPort" binding="tns:DepositWebServiceSOAPHttpPortBinding">
+            <soap:address location="http://10.1.15.19:7001/backend/common/depositapi"/>
+        </port>
+    </service>
+</definitions>
