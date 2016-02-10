@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="1.0"
+xmlns:nsproduct="http://cb.ukrpay.net/common/ws/product" targetNamespace="http://cb.ukrpay.net/common/ws/product"
+xmlns:nsall="http://cb.ukrpay.net/common/ws">
+
+  <xsd:import namespace="http://cb.ukrpay.net/common/ws" schemaLocation="WSAll.xsd"/>
+  <xsd:include schemaLocation="WSProduct.xsd"/>
+
+  <xsd:complexType name="bankDepositListRp">
+    <xsd:complexContent>
+      <xsd:extension base="nsall:resultRp">
+        <xsd:sequence>
+          <xsd:element name="list" type="nsproduct:bankDeposit" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="getBankDepositListAllowOpen">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getBankDepositListAllowOpenResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:bankDepositListRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createBankDepositOpen">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+      <xsd:element name="bankProductId" type="xsd:int"/>
+      <xsd:element name="bankDepositPeriodId" type="xsd:int"/>
+      <xsd:element name="operAmount" type="xsd:long"/>
+      <xsd:element name="operCurrencyId" type="xsd:int"/>
+      <xsd:element name="clientProductId" type="xsd:long"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createBankDepositOpenResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:operRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:element name="getBankDepositListAllowOpen" type="nsproduct:getBankDepositListAllowOpen"/>
+  <xsd:element name="getBankDepositListAllowOpenResponse" type="nsproduct:getBankDepositListAllowOpenResponse"/>
+  <xsd:element name="createBankDepositOpen" type="nsproduct:createBankDepositOpen"/>
+  <xsd:element name="createBankDepositOpenResponse" type="nsproduct:createBankDepositOpenResponse"/>
+
+</xsd:schema>

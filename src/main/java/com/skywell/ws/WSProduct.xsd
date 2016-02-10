@@ -1,0 +1,669 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="1.0"
+xmlns:nsproduct="http://cb.ukrpay.net/common/ws/product" targetNamespace="http://cb.ukrpay.net/common/ws/product"
+xmlns:nsall="http://cb.ukrpay.net/common/ws"
+xmlns:nsuser="http://cb.ukrpay.net/common/ws/user">
+
+  <xsd:import namespace="http://cb.ukrpay.net/common/ws" schemaLocation="WSAll.xsd"/>
+  <xsd:import namespace="http://cb.ukrpay.net/common/ws/user" schemaLocation="WSUser.xsd"/>
+
+  <xsd:complexType name="bankProduct">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:int"/>
+      <xsd:element name="currencyId" type="xsd:int"/>
+      <xsd:element name="currencyAlias" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="typeId" type="xsd:int"/>
+      <xsd:element name="typeAlias" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="logo" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="nameFull" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="note" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="bankDeposit">
+    <xsd:complexContent>
+      <xsd:extension base="nsproduct:bankProduct">
+        <xsd:sequence>
+          <xsd:element name="allowSysOpen" type="xsd:boolean"/>
+          <xsd:element name="allowSysReplenishment" type="xsd:boolean"/>
+          <xsd:element name="allowSysClose" type="xsd:boolean"/>
+          <xsd:element name="infoShort" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="infoFull" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="bankDepositPeriod" type="nsproduct:bankDepositPeriod" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="bankDepositPeriod">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:int"/>
+      <xsd:element name="depoPeriodValue" type="xsd:int"/>
+      <xsd:element name="depoPeriodType" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="rate" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="interestPeriodType" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="capitalizationPeriodType" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="allowReplenishment" type="xsd:boolean"/>
+      <xsd:element name="openAmountMin" type="xsd:long"/>
+      <xsd:element name="openAmountMax" type="xsd:long"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="bankCard">
+    <xsd:complexContent>
+      <xsd:extension base="nsproduct:bankProduct">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="bankAccount">
+    <xsd:complexContent>
+      <xsd:extension base="nsproduct:bankProduct">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="bankLoan">
+    <xsd:complexContent>
+      <xsd:extension base="nsproduct:bankProduct">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="clientProduct">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:long"/>
+      <xsd:element name="typeId" type="xsd:int"/>
+      <xsd:element name="typeAlias" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="bankProductId" type="xsd:int"/>
+      <xsd:element name="currencyId" type="xsd:int"/>
+      <xsd:element name="currencyAlias" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="balance" type="xsd:long"/>
+      <xsd:element name="syncBalance" type="xsd:dateTime" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="clientDeposit">
+    <xsd:complexContent>
+      <xsd:extension base="nsproduct:clientProduct">
+        <xsd:sequence>
+          <xsd:element name="interestNotPaidAmount" type="xsd:long"/>
+          <xsd:element name="depoPeriodClose" type="xsd:date" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="clientCard">
+    <xsd:complexContent>
+      <xsd:extension base="nsproduct:clientProduct">
+        <xsd:sequence>
+          <xsd:element name="cardNumberMasked" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="cardExpireDate" type="xsd:date" minOccurs="0"/>
+          <xsd:element name="cardTypeId" type="xsd:int"/>
+          <xsd:element name="cardLogo" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="cardKindId" type="xsd:int"/>
+          <xsd:element name="cardStateId" type="xsd:int"/>
+          <xsd:element name="ownAmount" type="xsd:long"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="clientAccount">
+    <xsd:complexContent>
+      <xsd:extension base="nsproduct:clientProduct">
+        <xsd:sequence>
+          <xsd:element name="accountNumber" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="clientLoan">
+    <xsd:complexContent>
+      <xsd:extension base="nsproduct:clientProduct">
+        <xsd:sequence>
+          <xsd:element name="nextPaymentDate" type="xsd:date" minOccurs="0"/>
+          <xsd:element name="nextPaymentAmount" type="xsd:long"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="clientFullProduct">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:long"/>
+      <xsd:element name="typeId" type="xsd:int"/>
+      <xsd:element name="typeAlias" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="bankProductId" type="xsd:int"/>
+      <xsd:element name="currencyId" type="xsd:int"/>
+      <xsd:element name="currencyAlias" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="balance" type="xsd:long"/>
+      <xsd:element name="syncBalance" type="xsd:dateTime" minOccurs="0"/>
+      <xsd:element name="agrNumber" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="agrDate" type="xsd:date" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="clientFullDeposit">
+    <xsd:complexContent>
+      <xsd:extension base="nsproduct:clientFullProduct">
+        <xsd:sequence>
+          <xsd:element name="depoPeriodValue" type="xsd:int"/>
+          <xsd:element name="depoPeriodType" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="rate" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="interestPeriodType" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="capitalizationPeriodType" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="allowReplenishment" type="xsd:boolean"/>
+          <xsd:element name="allowWithdraw" type="xsd:boolean"/>
+          <xsd:element name="allowWithdrawPartial" type="xsd:boolean"/>
+          <xsd:element name="startAmount" type="xsd:long"/>
+          <xsd:element name="paidAmount" type="xsd:long"/>
+          <xsd:element name="interestPaidAmount" type="xsd:long"/>
+          <xsd:element name="interestNotPaidAmount" type="xsd:long"/>
+          <xsd:element name="penaltyRate" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="depoPeriodClose" type="xsd:date" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="clientFullCard">
+    <xsd:complexContent>
+      <xsd:extension base="nsproduct:clientFullProduct">
+        <xsd:sequence>
+          <xsd:element name="cardNumberMasked" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="cardExpireDate" type="xsd:date" minOccurs="0"/>
+          <xsd:element name="cardTypeId" type="xsd:int"/>
+          <xsd:element name="cardLogo" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="cardKindId" type="xsd:int"/>
+          <xsd:element name="cardStateId" type="xsd:int"/>
+          <xsd:element name="ownAmount" type="xsd:long"/>
+          <xsd:element name="creditAmount" type="xsd:long"/>
+          <xsd:element name="creditLimit" type="xsd:long"/>
+          <xsd:element name="holdAmount" type="xsd:long"/>
+          <xsd:element name="cardAccount" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="cardHolderName" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="interestRate" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="limitDailyAmount" type="xsd:long"/>
+          <xsd:element name="limitDailyCount" type="xsd:int"/>
+          <xsd:element name="smsServiceEnabled" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="clientFullAccount">
+    <xsd:complexContent>
+      <xsd:extension base="nsproduct:clientFullProduct">
+        <xsd:sequence>
+          <xsd:element name="accountNumber" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="clientFullLoan">
+    <xsd:complexContent>
+      <xsd:extension base="nsproduct:clientFullProduct">
+        <xsd:sequence>
+          <xsd:element name="nextPaymentDate" type="xsd:date" minOccurs="0"/>
+          <xsd:element name="nextPaymentAmount" type="xsd:long"/>
+          <xsd:element name="loanPeriodValue" type="xsd:int"/>
+          <xsd:element name="rate" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="overdueAmount" type="xsd:long"/>
+          <xsd:element name="overdueInterestAmount" type="xsd:long"/>
+          <xsd:element name="overdueFeeAmount" type="xsd:long"/>
+          <xsd:element name="penaltyAmount" type="xsd:long"/>
+          <xsd:element name="startAmount" type="xsd:long"/>
+          <xsd:element name="feeAmount" type="xsd:long"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="tarif">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:int"/>
+      <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="currencyId" type="xsd:int"/>
+      <xsd:element name="currencyAlias" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="fixAmount" type="xsd:long"/>
+      <xsd:element name="prcAmount" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="minAmount" type="xsd:long"/>
+      <xsd:element name="maxAmount" type="xsd:long"/>
+      <xsd:element name="koef" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="tarifAdded" type="xsd:boolean"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="payProduct">
+    <xsd:sequence>
+      <xsd:element name="clientProduct" type="nsproduct:clientProduct" minOccurs="0"/>
+      <xsd:element name="tarif" type="nsproduct:tarif" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="algTarifRec">
+    <xsd:sequence>
+      <xsd:element name="amountFrom" type="xsd:long"/>
+      <xsd:element name="amountTo" type="xsd:long"/>
+      <xsd:element name="tarifFix" type="xsd:long"/>
+      <xsd:element name="tarifPrc" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="tarifMin" type="xsd:long"/>
+      <xsd:element name="tarifMax" type="xsd:long"/>
+      <xsd:element name="currencyId" type="xsd:int"/>
+      <xsd:element name="currencyAlias" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="algTarif">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:int"/>
+      <xsd:element name="list" type="nsproduct:algTarifRec" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="alg">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:int"/>
+      <xsd:element name="operType" type="xsd:string"/>
+      <xsd:element name="sendClientProduct" type="nsproduct:clientProduct" minOccurs="0"/>
+      <xsd:element name="resvClientProduct" type="nsproduct:clientProduct" minOccurs="0"/>
+      <xsd:element name="algTarif" type="nsproduct:algTarif" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="algTarifRec">
+    <xsd:sequence>
+      <xsd:element name="amountFrom" type="xsd:long"/>
+      <xsd:element name="amountTo" type="xsd:long"/>
+      <xsd:element name="tarifFix" type="xsd:long"/>
+      <xsd:element name="tarifPrc" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="tarifMin" type="xsd:long"/>
+      <xsd:element name="tarifMax" type="xsd:long"/>
+      <xsd:element name="currencyId" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="algTarif">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:int"/>
+      <xsd:element name="list" type="nsproduct:algTarifRec" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="alg">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:int"/>
+      <xsd:element name="operType" type="xsd:string"/>
+      <xsd:element name="sendClientProduct" type="nsproduct:clientProduct" minOccurs="0"/>
+      <xsd:element name="resvClientProduct" type="nsproduct:clientProduct" minOccurs="0"/>
+      <xsd:element name="algTarif" type="nsproduct:algTarif" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="clientTrans">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="clientId" type="xsd:long"/>
+      <xsd:element name="clientProductId" type="xsd:long"/>
+      <xsd:element name="clientProductName" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="createDt" type="xsd:dateTime" minOccurs="0"/>
+      <xsd:element name="execDt" type="xsd:dateTime" minOccurs="0"/>
+      <xsd:element name="transName" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="termName" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="transAmount" type="xsd:long"/>
+      <xsd:element name="transCurrencyId" type="xsd:int"/>
+      <xsd:element name="transCurrencyAlias" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="productAmount" type="xsd:long"/>
+      <xsd:element name="productCurrencyId" type="xsd:int"/>
+      <xsd:element name="productCurrencyAlias" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="operVar">
+    <xsd:sequence>
+      <xsd:element name="alias" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="oper">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:long"/>
+      <xsd:element name="operType" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="clientId" type="xsd:long"/>
+      <xsd:element name="clientProductId" type="xsd:long"/>
+      <xsd:element name="clientProductName" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="bankProductId" type="xsd:int"/>
+      <xsd:element name="bankProductName" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="bankProductTypeId" type="xsd:int"/>
+      <xsd:element name="bankProductTypeAlias" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="operCreate" type="xsd:dateTime" minOccurs="0"/>
+      <xsd:element name="operExec" type="xsd:dateTime" minOccurs="0"/>
+      <xsd:element name="operRollback" type="xsd:dateTime" minOccurs="0"/>
+      <xsd:element name="extrnId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="operStateId" type="xsd:int"/>
+      <xsd:element name="operStateNote" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="note" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="operAmount" type="xsd:long"/>
+      <xsd:element name="operCurrencyId" type="xsd:int"/>
+      <xsd:element name="operCurrencyAlias" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="interestAmount" type="xsd:long"/>
+      <xsd:element name="interestCurrencyId" type="xsd:int"/>
+      <xsd:element name="interestCurrencyAlias" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="varList" type="nsproduct:operVar" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+      <xsd:element name="otpReq" type="nsuser:otpReq" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+
+  <xsd:complexType name="clientProductListRp">
+    <xsd:complexContent>
+      <xsd:extension base="nsall:resultRp">
+        <xsd:sequence>
+          <xsd:element name="list" type="nsproduct:clientProduct" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="clientFullProductRp">
+    <xsd:complexContent>
+      <xsd:extension base="nsall:resultRp">
+        <xsd:sequence>
+          <xsd:element name="result" type="nsproduct:clientFullProduct" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="payProductListRp">
+    <xsd:complexContent>
+      <xsd:extension base="nsall:resultRp">
+        <xsd:sequence>
+          <xsd:element name="list" type="nsproduct:payProduct" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="algListRp">
+    <xsd:complexContent>
+      <xsd:extension base="nsall:resultRp">
+        <xsd:sequence>
+          <xsd:element name="list" type="nsproduct:alg" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="clientTransListRp">
+    <xsd:complexContent>
+      <xsd:extension base="nsall:resultRp">
+        <xsd:sequence>
+          <xsd:element name="list" type="nsproduct:clientTrans" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="operRp">
+    <xsd:complexContent>
+      <xsd:extension base="nsall:resultRp">
+        <xsd:sequence>
+          <xsd:element name="result" type="nsproduct:oper" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="operListRp">
+    <xsd:complexContent>
+      <xsd:extension base="nsall:resultRp">
+        <xsd:sequence>
+          <xsd:element name="list" type="nsproduct:oper" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="getClientProductList">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getClientProductListResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:clientProductListRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getClientFullProduct">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+      <xsd:element name="clientProductId" type="xsd:long"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getClientFullProductResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:clientFullProductRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getPayProductList">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+      <xsd:element name="fltOperType" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="fltBankProductId" type="xsd:int"/>
+      <xsd:element name="fltCurrencyId" type="xsd:int"/>
+      <xsd:element name="fltAmountMin" type="xsd:long"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getPayProductListResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:payProductListRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getAlgList">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+      <xsd:element name="operType" type="xsd:string"/>
+      <xsd:element name="currencyId" type="xsd:int"/>
+      <xsd:element name="fltSendBankProductId" type="xsd:int"/>
+      <xsd:element name="fltSendClientProductId" type="xsd:long"/>
+      <xsd:element name="fltResvBankProductId" type="xsd:int"/>
+      <xsd:element name="fltResvClientProductId" type="xsd:long"/>
+      <xsd:element name="fltSpec" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="fltAmountMin" type="xsd:long"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getAlgListResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:algListRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getStatementMini">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+      <xsd:element name="clientProductId" type="xsd:long"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getStatementMiniResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:clientTransListRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="checkOperOtp">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+      <xsd:element name="otpReqId" type="xsd:string"/>
+      <xsd:element name="otpPass" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="checkOperOtpResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:operRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getOperList">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getOperListResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:operListRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getOperFull">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+      <xsd:element name="operId" type="xsd:long"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getOperFullResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:operRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createOperSendClientProduct">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+      <xsd:element name="clientProductId" type="xsd:long"/>
+      <xsd:element name="operAmount" type="xsd:long"/>
+      <xsd:element name="operCurrencyId" type="xsd:int"/>
+      <xsd:element name="note" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="varList" type="nsproduct:operVar" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+      <xsd:element name="resvClientProductId" type="xsd:long"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createOperSendClientProductResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:operRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createOperSendLocalAcc">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+      <xsd:element name="clientProductId" type="xsd:long"/>
+      <xsd:element name="operAmount" type="xsd:long"/>
+      <xsd:element name="operCurrencyId" type="xsd:int"/>
+      <xsd:element name="note" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="varList" type="nsproduct:operVar" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+      <xsd:element name="resvLocalAcc" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createOperSendLocalAccResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:operRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createOperSendLocalCard">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+      <xsd:element name="clientProductId" type="xsd:long"/>
+      <xsd:element name="operAmount" type="xsd:long"/>
+      <xsd:element name="operCurrencyId" type="xsd:int"/>
+      <xsd:element name="note" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="varList" type="nsproduct:operVar" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+      <xsd:element name="resvLocalCard" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createOperSendLocalCardResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:operRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createOperSendCountryAcc">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+      <xsd:element name="clientProductId" type="xsd:long"/>
+      <xsd:element name="operAmount" type="xsd:long"/>
+      <xsd:element name="operCurrencyId" type="xsd:int"/>
+      <xsd:element name="note" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="varList" type="nsproduct:operVar" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+      <xsd:element name="resvCountryBankCode" type="xsd:string"/>
+      <xsd:element name="resvCountryClientCode" type="xsd:string"/>
+      <xsd:element name="resvCountryClientName" type="xsd:string"/>
+      <xsd:element name="resvCountryAcc" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createOperSendCountryAccResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:operRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createOperSendCountryCard">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+      <xsd:element name="clientProductId" type="xsd:long"/>
+      <xsd:element name="operAmount" type="xsd:long"/>
+      <xsd:element name="operCurrencyId" type="xsd:int"/>
+      <xsd:element name="note" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="varList" type="nsproduct:operVar" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+      <xsd:element name="resvCountryCard" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createOperSendCountryCardResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:operRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createOperResvClientProduct">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+      <xsd:element name="clientProductId" type="xsd:long"/>
+      <xsd:element name="operAmount" type="xsd:long"/>
+      <xsd:element name="operCurrencyId" type="xsd:int"/>
+      <xsd:element name="note" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="varList" type="nsproduct:operVar" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+      <xsd:element name="sendClientProductId" type="xsd:long"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createOperResvClientProductResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:operRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createOperPayServ">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+      <xsd:element name="clientProductId" type="xsd:long"/>
+      <xsd:element name="operAmount" type="xsd:long"/>
+      <xsd:element name="operCurrencyId" type="xsd:int"/>
+      <xsd:element name="note" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="varList" type="nsproduct:operVar" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createOperPayServResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:operRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createOperStateChange">
+    <xsd:sequence>
+      <xsd:element name="reqBase" type="nsall:reqBase"/>
+      <xsd:element name="clientProductId" type="xsd:long"/>
+      <xsd:element name="newState" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="note" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="varList" type="nsproduct:operVar" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="createOperStateChangeResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="nsproduct:operRp"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:element name="getClientProductList" type="nsproduct:getClientProductList"/>
+  <xsd:element name="getClientProductListResponse" type="nsproduct:getClientProductListResponse"/>
+  <xsd:element name="getClientFullProduct" type="nsproduct:getClientFullProduct"/>
+  <xsd:element name="getClientFullProductResponse" type="nsproduct:getClientFullProductResponse"/>
+  <xsd:element name="getPayProductList" type="nsproduct:getPayProductList"/>
+  <xsd:element name="getPayProductListResponse" type="nsproduct:getPayProductListResponse"/>
+  <xsd:element name="getAlgList" type="nsproduct:getAlgList"/>
+  <xsd:element name="getAlgListResponse" type="nsproduct:getAlgListResponse"/>
+  <xsd:element name="getStatementMini" type="nsproduct:getStatementMini"/>
+  <xsd:element name="getStatementMiniResponse" type="nsproduct:getStatementMiniResponse"/>
+  <xsd:element name="checkOperOtp" type="nsproduct:checkOperOtp"/>
+  <xsd:element name="checkOperOtpResponse" type="nsproduct:checkOperOtpResponse"/>
+  <xsd:element name="getOperList" type="nsproduct:getOperList"/>
+  <xsd:element name="getOperListResponse" type="nsproduct:getOperListResponse"/>
+  <xsd:element name="getOperFull" type="nsproduct:getOperFull"/>
+  <xsd:element name="getOperFullResponse" type="nsproduct:getOperFullResponse"/>
+  <xsd:element name="createOperSendClientProduct" type="nsproduct:createOperSendClientProduct"/>
+  <xsd:element name="createOperSendClientProductResponse" type="nsproduct:createOperSendClientProductResponse"/>
+  <xsd:element name="createOperSendLocalAcc" type="nsproduct:createOperSendLocalAcc"/>
+  <xsd:element name="createOperSendLocalAccResponse" type="nsproduct:createOperSendLocalAccResponse"/>
+  <xsd:element name="createOperSendLocalCard" type="nsproduct:createOperSendLocalCard"/>
+  <xsd:element name="createOperSendLocalCardResponse" type="nsproduct:createOperSendLocalCardResponse"/>
+  <xsd:element name="createOperSendCountryAcc" type="nsproduct:createOperSendCountryAcc"/>
+  <xsd:element name="createOperSendCountryAccResponse" type="nsproduct:createOperSendCountryAccResponse"/>
+  <xsd:element name="createOperSendCountryCard" type="nsproduct:createOperSendCountryCard"/>
+  <xsd:element name="createOperSendCountryCardResponse" type="nsproduct:createOperSendCountryCardResponse"/>
+  <xsd:element name="createOperResvClientProduct" type="nsproduct:createOperResvClientProduct"/>
+  <xsd:element name="createOperResvClientProductResponse" type="nsproduct:createOperResvClientProductResponse"/>
+  <xsd:element name="createOperPayServ" type="nsproduct:createOperPayServ"/>
+  <xsd:element name="createOperPayServResponse" type="nsproduct:createOperPayServResponse"/>
+  <xsd:element name="createOperStateChange" type="nsproduct:createOperStateChange"/>
+  <xsd:element name="createOperStateChangeResponse" type="nsproduct:createOperStateChangeResponse"/>
+
+</xsd:schema>

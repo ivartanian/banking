@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions name="BaseWebService" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        targetNamespace="http://cb.ukrpay.net/common/ws"
+        xmlns:tns="http://cb.ukrpay.net/common/ws" 
+        xmlns:nscore="http://cb.ukrpay.net/common/ws/core">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://cb.ukrpay.net/common/ws/core" schemaLocation="WSCore.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="getLangList">
+    <part name="parameters" element="nscore:getLangList">
+    </part>
+  </message>
+  <message name="getLangListResponse">
+    <part name="return" element="nscore:getLangListResponse">
+    </part>
+  </message>
+  <message name="getCurrencyList">
+    <part name="parameters" element="nscore:getCurrencyList">
+    </part>
+  </message>
+  <message name="getCurrencyListResponse">
+    <part name="return" element="nscore:getCurrencyListResponse">
+    </part>
+  </message>
+  <message name="getCurrencyAllList">
+    <part name="parameters" element="nscore:getCurrencyAllList">
+    </part>
+  </message>
+  <message name="getCurrencyAllListResponse">
+    <part name="return" element="nscore:getCurrencyAllListResponse">
+    </part>
+  </message>
+  <message name="getExchRateList">
+    <part name="parameters" element="nscore:getExchRateList">
+    </part>
+  </message>
+  <message name="getExchRateListResponse">
+    <part name="return" element="nscore:getExchRateListResponse">
+    </part>
+  </message>
+  <message name="getNewsList">
+    <part name="parameters" element="nscore:getNewsList">
+    </part>
+  </message>
+  <message name="getNewsListResponse">
+    <part name="return" element="nscore:getNewsListResponse">
+    </part>
+  </message>
+  <portType name="BaseWebService">
+    <operation name="getLangList">
+      <input message="tns:getLangList">
+      </input>
+      <output message="tns:getLangListResponse">
+      </output>
+    </operation>
+    <operation name="getCurrencyList">
+      <input message="tns:getCurrencyList">
+      </input>
+      <output message="tns:getCurrencyListResponse">
+      </output>
+    </operation>
+    <operation name="getCurrencyAllList">
+      <input message="tns:getCurrencyAllList">
+      </input>
+      <output message="tns:getCurrencyAllListResponse">
+      </output>
+    </operation>
+    <operation name="getExchRateList">
+      <input message="tns:getExchRateList">
+      </input>
+      <output message="tns:getExchRateListResponse">
+      </output>
+    </operation>
+    <operation name="getNewsList">
+      <input message="tns:getNewsList">
+      </input>
+      <output message="tns:getNewsListResponse">
+      </output>
+    </operation>
+  </portType>
+  <binding name="BaseWebServiceSOAPHttpPortBinding" type="tns:BaseWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getLangList">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getCurrencyList">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getCurrencyAllList">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getExchRateList">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getNewsList">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="BaseWebService">
+    <port name="BaseWebServiceSOAPHttpPort" binding="tns:BaseWebServiceSOAPHttpPortBinding">
+      <soap:address location="http://cb.ukrpay.net/common/ws/BaseWebService"/>
+    </port>
+  </service>
+</definitions>

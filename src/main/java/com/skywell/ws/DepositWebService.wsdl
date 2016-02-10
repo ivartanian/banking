@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions name="DepositWebService" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        targetNamespace="http://cb.ukrpay.net/common/ws"
+        xmlns:tns="http://cb.ukrpay.net/common/ws" 
+        xmlns:nsproduct="http://cb.ukrpay.net/common/ws/product">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://cb.ukrpay.net/common/ws/product" schemaLocation="WSDeposit.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="getBankDepositListAllowOpen">
+    <part name="parameters" element="nsproduct:getBankDepositListAllowOpen">
+    </part>
+  </message>
+  <message name="getBankDepositListAllowOpenResponse">
+    <part name="return" element="nsproduct:getBankDepositListAllowOpenResponse">
+    </part>
+  </message>
+  <message name="createBankDepositOpen">
+    <part name="parameters" element="nsproduct:createBankDepositOpen">
+    </part>
+  </message>
+  <message name="createBankDepositOpenResponse">
+    <part name="return" element="nsproduct:createBankDepositOpenResponse">
+    </part>
+  </message>
+
+  <portType name="DepositWebService">
+    <operation name="getBankDepositListAllowOpen">
+      <input message="tns:getBankDepositListAllowOpen">
+      </input>
+      <output message="tns:getBankDepositListAllowOpenResponse">
+      </output>
+    </operation>
+    <operation name="createBankDepositOpen">
+      <input message="tns:createBankDepositOpen">
+      </input>
+      <output message="tns:createBankDepositOpenResponse">
+      </output>
+    </operation>
+  </portType>
+  <binding name="DepositWebServiceSOAPHttpPortBinding" type="tns:DepositWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getBankDepositListAllowOpen">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="createBankDepositOpen">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="DepositWebService">
+    <port name="DepositWebServiceSOAPHttpPort" binding="tns:DepositWebServiceSOAPHttpPortBinding">
+      <soap:address location="http://cb.ukrpay.net/common/ws/DepositWebService"/>
+    </port>
+  </service>
+</definitions>

@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions name="ServWebService" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        targetNamespace="http://cb.ukrpay.net/common/ws"
+        xmlns:tns="http://cb.ukrpay.net/common/ws" 
+        xmlns:nsserv="http://cb.ukrpay.net/common/ws/serv">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://cb.ukrpay.net/common/ws/serv" schemaLocation="WSServ.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="getCategoryList">
+    <part name="parameters" element="nsserv:getCategoryList">
+    </part>
+  </message>
+  <message name="getCategoryListResponse">
+    <part name="return" element="nsserv:getCategoryListResponse">
+    </part>
+  </message>
+  <message name="getServList">
+    <part name="parameters" element="nsserv:getServList">
+    </part>
+  </message>
+  <message name="getServListResponse">
+    <part name="return" element="nsserv:getServListResponse">
+    </part>
+  </message>
+  <message name="getServInfo">
+    <part name="parameters" element="nsserv:getServInfo">
+    </part>
+  </message>
+  <message name="getServInfoResponse">
+    <part name="return" element="nsserv:getServInfoResponse">
+    </part>
+  </message>
+  <message name="checkBalance">
+    <part name="parameters" element="nsserv:checkBalance">
+    </part>
+  </message>
+  <message name="checkBalanceResponse">
+    <part name="return" element="nsserv:checkBalanceResponse">
+    </part>
+  </message>
+
+
+  <portType name="ServWebService">
+    <operation name="getCategoryList">
+      <input message="tns:getCategoryList">
+      </input>
+      <output message="tns:getCategoryListResponse">
+      </output>
+    </operation>
+    <operation name="getServList">
+      <input message="tns:getServList">
+      </input>
+      <output message="tns:getServListResponse">
+      </output>
+    </operation>
+    <operation name="getServInfo">
+      <input message="tns:getServInfo">
+      </input>
+      <output message="tns:getServInfoResponse">
+      </output>
+    </operation>
+    <operation name="checkBalance">
+      <input message="tns:checkBalance">
+      </input>
+      <output message="tns:checkBalanceResponse">
+      </output>
+    </operation>
+  </portType>
+  <binding name="ServWebServiceSOAPHttpPortBinding" type="tns:ServWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getCategoryList">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getServList">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getServInfo">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="checkBalance">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="ServWebService">
+    <port name="ServWebServiceSOAPHttpPort" binding="tns:ServWebServiceSOAPHttpPortBinding">
+      <soap:address location="http://cb.ukrpay.net/common/ws/ServWebService"/>
+    </port>
+  </service>
+</definitions>
