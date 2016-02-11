@@ -32,8 +32,9 @@ public class UserApiController {
     @GET
     @Path(value = "/test")
     public Response getTest() {
-        LOG.info("Привет");
-        return Response.ok("Привет").build();
+        String initParameter = context.getInitParameter("ReqBase.fs");
+        LOG.info(initParameter);
+        return Response.ok(initParameter).build();
     }
 
     @GET

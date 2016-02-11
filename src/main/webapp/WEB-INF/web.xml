@@ -6,10 +6,8 @@
            version="3.0">
 
     <context-param>
-        <param-name>appPropertiesConfig</param-name>
-        <param-value>
-            classpath:configuration.properties
-        </param-value>
+        <param-name>ReqBase.fs</param-name>
+        <param-value>mb</param-value>
     </context-param>
 
     <servlet>
