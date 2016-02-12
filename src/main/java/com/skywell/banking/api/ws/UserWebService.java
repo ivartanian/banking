@@ -28,6 +28,7 @@ import com.skywell.banking.api.ws.user.UserPassCfgRp;
 })
 public interface UserWebService {
 
+    String USER_ENDPOINT_ADDRESS = "http://10.1.15.19:7001/backend/common/userapi/";
 
     /**
      * 

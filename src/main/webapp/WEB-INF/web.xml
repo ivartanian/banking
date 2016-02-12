@@ -9,6 +9,10 @@
         <param-name>ReqBase.fs</param-name>
         <param-value>mb</param-value>
     </context-param>
+    <context-param>
+        <param-name>ReqBase.lang</param-name>
+        <param-value>uk</param-value>
+    </context-param>
 
     <servlet>
         <display-name>My JAX-RS Servlet</display-name>

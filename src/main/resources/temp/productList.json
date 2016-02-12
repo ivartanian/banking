@@ -1,0 +1,80 @@
+{
+  "list": [
+    {
+      "cardNumberMasked": "4148xxxxxxxx0844",
+      "cardExpireDate": 1509400800000,
+      "cardTypeId": 1,
+      "cardLogo": null,
+      "cardKindId": 1,
+      "cardStateId": 1,
+      "ownAmount": 0,
+      "id": 3,
+      "typeId": 2,
+      "typeAlias": "card",
+      "bankProductId": 7,
+      "currencyId": 980,
+      "currencyAlias": "UAH",
+      "name": "Срібний гаманець",
+      "balance": 60000,
+      "syncBalance": 1444979595000
+    },
+    {
+      "interestNotPaidAmount": 4533,
+      "depoPeriodClose": null,
+      "id": 1,
+      "typeId": 1,
+      "typeAlias": "deposit",
+      "bankProductId": 1,
+      "currencyId": 980,
+      "currencyAlias": "UAH",
+      "name": "Заначка от тещи",
+      "balance": 1020000,
+      "syncBalance": 1444597200000
+    },
+    {
+      "cardNumberMasked": "4148xxxxxxxx2957",
+      "cardExpireDate": 1477864800000,
+      "cardTypeId": 1,
+      "cardLogo": null,
+      "cardKindId": 1,
+      "cardStateId": 1,
+      "ownAmount": 0,
+      "id": 2,
+      "typeId": 2,
+      "typeAlias": "card",
+      "bankProductId": 7,
+      "currencyId": 980,
+      "currencyAlias": "UAH",
+      "name": "Золотий гаманець",
+      "balance": 37000,
+      "syncBalance": 1444898995000
+    },
+    {
+      "nextPaymentDate": 1444424400000,
+      "nextPaymentAmount": 23588,
+      "id": 4,
+      "typeId": 3,
+      "typeAlias": "loan",
+      "bankProductId": 8,
+      "currencyId": 980,
+      "currencyAlias": "UAH",
+      "name": "Акційний",
+      "balance": 210000,
+      "syncBalance": 1409864400000
+    },
+    {
+      "accountNumber": "29092345688665",
+      "id": 5,
+      "typeId": 4,
+      "typeAlias": "account",
+      "bankProductId": 9,
+      "currencyId": 980,
+      "currencyAlias": "UAH",
+      "name": "Поточний рахунок",
+      "balance": 158955,
+      "syncBalance": 1444979595000
+    }
+  ],
+  "errCode": 0,
+  "errMsg": null
+}

@@ -1,0 +1,33 @@
+{
+  "result": {
+    "cardNumberMasked": "4148xxxxxxxx0844",
+    "cardExpireDate": 1509400800000,
+    "cardTypeId": 1,
+    "cardLogo": null,
+    "cardKindId": 1,
+    "cardStateId": 1,
+    "ownAmount": 0,
+    "creditAmount": 40000,
+    "creditLimit": 100000,
+    "holdAmount": 0,
+    "cardAccount": "26251111222244",
+    "cardHolderName": "Nick Tsuprick",
+    "interestRate": "2.5",
+    "limitDailyAmount": 0,
+    "limitDailyCount": 0,
+    "smsServiceEnabled": false,
+    "id": 3,
+    "typeId": 2,
+    "typeAlias": "card",
+    "bankProductId": 7,
+    "currencyId": 980,
+    "currencyAlias": "UAH",
+    "name": "Срібний гаманець",
+    "balance": 60000,
+    "syncBalance": 1444979595000,
+    "agrNumber": "ZA4464/465",
+    "agrDate": 1425160800000
+  },
+  "errCode": 0,
+  "errMsg": null
+}

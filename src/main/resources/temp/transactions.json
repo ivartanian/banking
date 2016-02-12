@@ -1,0 +1,54 @@
+{
+  "list": [
+    {
+      "id": "2",
+      "clientId": 1,
+      "clientProductId": 2,
+      "clientProductName": "Золотий гаманець",
+      "createDt": 1442831520000,
+      "execDt": 1442831520000,
+      "transName": "Списання комісії",
+      "termName": "BNK001",
+      "transAmount": -1000,
+      "transCurrencyId": 980,
+      "transCurrencyAlias": "UAH",
+      "productAmount": -1000,
+      "productCurrencyId": 980,
+      "productCurrencyAlias": "UAH"
+    },
+    {
+      "id": "244",
+      "clientId": 1,
+      "clientProductId": 2,
+      "clientProductName": "Золотий гаманець",
+      "createDt": 1442830200000,
+      "execDt": 1442830200000,
+      "transName": "(0.5%)Комісія за безготівкове зарахування коштів",
+      "termName": "BNK001",
+      "transAmount": 25,
+      "transCurrencyId": 980,
+      "transCurrencyAlias": "UAH",
+      "productAmount": 25,
+      "productCurrencyId": 980,
+      "productCurrencyAlias": "UAH"
+    },
+    {
+      "id": "55",
+      "clientId": 1,
+      "clientProductId": 2,
+      "clientProductName": "Золотий гаманець",
+      "createDt": 1442830200000,
+      "execDt": 1442830200000,
+      "transName": "Безготівкове поповнення Переказ на свій рахунок",
+      "termName": "BNK001",
+      "transAmount": 5000,
+      "transCurrencyId": 840,
+      "transCurrencyAlias": "USD",
+      "productAmount": 115234,
+      "productCurrencyId": 980,
+      "productCurrencyAlias": "UAH"
+    }
+  ],
+  "errCode": 0,
+  "errMsg": null
+}
