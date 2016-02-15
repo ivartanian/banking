@@ -10,10 +10,10 @@ import java.io.Serializable;
  */
 public class BaseRequest implements Serializable{
 
-    @NotNull
+    @NotNull(message = "Not be nulll")
     protected String fs;
 
-    @NotNull
+    @NotNull(message = "Not be nulll")
     protected String sid;
 
     protected String language;

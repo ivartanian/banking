@@ -1,13 +1,11 @@
 package com.skywell.banking.config;
 
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.skywell.banking.filters.CharsetResponseFilter;
-import com.skywell.banking.handlers.exeptions.CustomJsonMappingException;
-import org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider;
-import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 import org.glassfish.jersey.filter.LoggingFilter;
-import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
+import org.glassfish.jersey.server.validation.internal.ValidationErrorMessageBodyWriter;
 
 import javax.ws.rs.ApplicationPath;
 
@@ -20,7 +18,9 @@ public class JerseyConfig extends ResourceConfig {
         packages("com.skywell.banking");
         register(CharsetResponseFilter.class);
         register(LoggingFilter.class);
-//        register(JacksonJaxbJsonProvider.class);
+        register(JacksonJsonProvider.class);
+//        register(ValidationErrorMessageBodyWriter.class);
+        property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, "true");
 
         // Enable Tracing support.
 //        property(ServerProperties.TRACING, "ALL");
