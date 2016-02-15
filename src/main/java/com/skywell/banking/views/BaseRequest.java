@@ -3,17 +3,40 @@ package com.skywell.banking.views;
 import org.apache.log4j.Logger;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * Created by viv on 12.02.2016.
  */
-public class BaseReq {
+public class BaseRequest implements Serializable{
 
-    private String sid;
+    @NotNull
+    protected String fs;
+
+    @NotNull
+    protected String sid;
 
     protected String language;
 
     protected String sessionFrom;
+
+    public BaseRequest() {
+    }
+
+    public BaseRequest(String fs, String sid, String language, String sessionFrom) {
+        this.fs = fs;
+        this.sid = sid;
+        this.language = language;
+        this.sessionFrom = sessionFrom;
+    }
+
+    public String getFs() {
+        return fs;
+    }
+
+    public void setFs(String fs) {
+        this.fs = fs;
+    }
 
     public String getSid() {
         return sid;

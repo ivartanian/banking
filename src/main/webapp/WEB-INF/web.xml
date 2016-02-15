@@ -14,37 +14,37 @@
         <param-value>uk</param-value>
     </context-param>
 
-    <servlet>
-        <display-name>My JAX-RS Servlet</display-name>
-        <servlet-name>jersey-serlvet</servlet-name>
-        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
-        <init-param>
-            <param-name>com.sun.jersey.config.property.packages</param-name>
-            <param-value>com.skywell.banking</param-value>
-        </init-param>
-        <init-param>
-            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <init-param>
-            <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
-            <param-value>
-                com.sun.jersey.api.container.filter.LoggingFilter
-            </param-value>
-        </init-param>
-        <init-param>
-            <param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
-            <param-value>
-                com.skywell.banking.filters.CharsetResponseFilter;
-                com.sun.jersey.api.container.filter.LoggingFilter
-            </param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
+    <!--<servlet>-->
+        <!--<display-name>My JAX-RS Servlet</display-name>-->
+        <!--<servlet-name>jersey-serlvet</servlet-name>-->
+        <!--<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>-->
+        <!--<init-param>-->
+            <!--<param-name>com.sun.jersey.config.property.packages</param-name>-->
+            <!--<param-value>com.skywell.banking</param-value>-->
+        <!--</init-param>-->
+        <!--<init-param>-->
+            <!--<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>-->
+            <!--<param-value>true</param-value>-->
+        <!--</init-param>-->
+        <!--<init-param>-->
+            <!--<param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>-->
+            <!--<param-value>-->
+                <!--com.sun.jersey.api.container.filter.LoggingFilter-->
+            <!--</param-value>-->
+        <!--</init-param>-->
+        <!--<init-param>-->
+            <!--<param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>-->
+            <!--<param-value>-->
+                <!--&lt;!&ndash;com.skywell.banking.filters.CharsetResponseFilter;&ndash;&gt;-->
+                <!--com.sun.jersey.api.container.filter.LoggingFilter-->
+            <!--</param-value>-->
+        <!--</init-param>-->
+        <!--<load-on-startup>1</load-on-startup>-->
+    <!--</servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>jersey-serlvet</servlet-name>
-        <url-pattern>/*</url-pattern>
-    </servlet-mapping>
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>jersey-serlvet</servlet-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</servlet-mapping>-->
 
 </web-app>

@@ -1,11 +1,11 @@
 package com.skywell.banking.views.user;
 
-import com.skywell.banking.views.BaseReq;
+import com.skywell.banking.views.BaseRequest;
 
 /**
  * Created by viv on 12.02.2016.
  */
-public class UserLoginAuth extends BaseReq {
+public class UserLoginAuth extends BaseRequest {
 
     protected String login;
 

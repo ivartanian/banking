@@ -10,10 +10,14 @@ import com.skywell.banking.views.errors.Error;
 import com.skywell.banking.views.user.UserLoginAuth;
 import org.apache.log4j.Logger;
 
-import javax.ws.rs.*;
+import javax.validation.Valid;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.DatatypeConverter;
-import java.util.*;
+import java.util.List;
 
 /**
  * Created by uartan on 09.02.2016.
@@ -27,7 +31,7 @@ public class UserApiController extends BaseController{
 
     @POST
     @Path(value = "/authenticate")
-    public Response authenticate(UserLoginAuth userLoginAuth) {
+    public Response authenticate(@Valid UserLoginAuth userLoginAuth) {
 
         List<Error> errorMessages = validate(userLoginAuth);
 
@@ -41,7 +45,7 @@ public class UserApiController extends BaseController{
         UserWebService userWebService = getUserWebService();
 
         LOG.info("Prepare request");
-        ReqBase reqBase = prepareReqBase(userLoginAuth);
+        ReqBase reqBase = prepareApiReqBase(userLoginAuth);
 
         LOG.info("Generate crypto login/password...");
         byte[] bytes = Core.cryptoPasswordCreateObj(userLoginAuth.getLogin(), userLoginAuth.getPassword());
@@ -75,7 +79,7 @@ public class UserApiController extends BaseController{
         UserWebService userWebService = getUserWebService();
 
         LOG.info("Prepare request");
-        ReqBase reqBase = prepareReqBase(userLoginAuth);
+        ReqBase reqBase = prepareApiReqBase(userLoginAuth);
 
         LOG.info("Authenticate...");
         reqBase.setSid(userLoginAuth.getSid());
@@ -105,7 +109,7 @@ public class UserApiController extends BaseController{
 //        UserWebService userWebService = getUserWebService();
 //
 //        LOG.info("Prepare request");
-//        ReqBase reqBase = prepareReqBase(userChangePassword);
+//        ReqBase reqBase = prepareApiReqBase(userChangePassword);
 //
 //        LOG.info("Generate crypto password and new password");
 //        byte[] passwordBytes = Core.cryptoPasswordCreateObj(userChangePassword.getLogin(), userChangePassword.getPassword());
