@@ -1,13 +1,16 @@
 package com.skywell.banking.controllers;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.skywell.banking.annotations.validations.UserSid;
 import com.skywell.banking.api.core.Core;
 import com.skywell.banking.api.ws.ReqBase;
 import com.skywell.banking.api.ws.UserWebService;
 import com.skywell.banking.api.ws.UserWebService_Service;
+import com.skywell.banking.api.ws.user.Session;
 import com.skywell.banking.api.ws.user.SessionRp;
-import com.skywell.banking.views.Result;
-import com.skywell.banking.views.errors.Error;
 import com.skywell.banking.views.user.UserLoginAuth;
+import com.skywell.banking.views.user.UserSmsCheckAuth;
+import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import org.apache.log4j.Logger;
 
 import javax.validation.Valid;
@@ -17,7 +20,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.DatatypeConverter;
-import java.util.List;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by uartan on 09.02.2016.
@@ -30,21 +35,25 @@ public class UserApiController extends BaseController{
     private static final Logger LOG = Logger.getLogger(UserApiController.class);
 
     @POST
+    @Path(value = "/authenticate1")
+    @JsonFormat(pattern = "dd.MM.yyyy H:m:s")
+    public Response authenticate1(UserLoginAuth userLoginAuth) {
+
+        Session session = new Session();
+        session.setExpireDate(new XMLGregorianCalendarImpl(new GregorianCalendar()));
+        SessionRp sessionRp = new SessionRp();
+        sessionRp.setResult(session);
+
+        return Response.ok(sessionRp).build();
+
+    }
+
+    @POST
     @Path(value = "/authenticate")
     public Response authenticate(@Valid UserLoginAuth userLoginAuth) {
 
-        List<Error> errorMessages = validate(userLoginAuth);
-
-        if (!errorMessages.isEmpty()){
-            LOG.info("Validated failure");
-            Result result = prepareResult(Response.Status.BAD_REQUEST.getStatusCode(), Response.Status.BAD_REQUEST.getReasonPhrase(), errorMessages);
-            return Response.status(Response.Status.BAD_REQUEST).entity(result).build();
-        }
-        LOG.info("Validated successful");
-
         UserWebService userWebService = getUserWebService();
 
-        LOG.info("Prepare request");
         ReqBase reqBase = prepareApiReqBase(userLoginAuth);
 
         LOG.info("Generate crypto login/password...");
@@ -58,76 +67,28 @@ public class UserApiController extends BaseController{
         LOG.info("Check result authenticate");
         //TODO: Handle result
 
-//        return Response.ok(prepareResult(sessionRp.getErrCode(), sessionRp.getErrMsg(), sessionRp)).build();
         return Response.ok(sessionRp).build();
 
     }
 
     @POST
     @Path(value = "/authenticate/smscheck")
-    public Response checkAuthOtp(UserLoginAuth userLoginAuth) {
-
-        List<Error> errorMessages = validate(userLoginAuth);
-
-        if (!errorMessages.isEmpty()){
-            LOG.info("Validated failure");
-            Result result = prepareResult(Response.Status.BAD_REQUEST.getStatusCode(), Response.Status.BAD_REQUEST.getReasonPhrase(), errorMessages);
-            return Response.status(Response.Status.BAD_REQUEST).entity(result).build();
-        }
-        LOG.info("Validated successful");
+    public Response checkAuthOtp(@Valid @UserSid UserSmsCheckAuth userSmsCheckAuth) {
 
         UserWebService userWebService = getUserWebService();
 
-        LOG.info("Prepare request");
-        ReqBase reqBase = prepareApiReqBase(userLoginAuth);
+        ReqBase reqBase = prepareApiReqBase(userSmsCheckAuth);
 
         LOG.info("Authenticate...");
-        reqBase.setSid(userLoginAuth.getSid());
-        SessionRp sessionRp = userWebService.checkAuthOtp(reqBase, userLoginAuth.getReqId(), userLoginAuth.getSmsPass());
+        reqBase.setSid(userSmsCheckAuth.getSid());
+        SessionRp sessionRp = userWebService.checkAuthOtp(reqBase, userSmsCheckAuth.getReqId(), userSmsCheckAuth.getSmsPass());
 
         LOG.info("Check result authenticate");
         //TODO: Handle result
 
-//        return Response.ok(prepareResult(sessionRp.getErrCode(), sessionRp.getErrMsg(), sessionRp)).build();
         return Response.ok(sessionRp).build();
 
     }
-
-//    @POST
-//    @Path(value = "/authenticate/changepass")
-//    public Response changePass(UserChangePassword userChangePassword) {
-//
-//        List<Error> errorMessages = validate(userChangePassword);
-//
-//        if (!errorMessages.isEmpty()){
-//            LOG.info("Validated failure");
-//            Result result = prepareResult(Response.Status.BAD_REQUEST.getStatusCode(), Response.Status.BAD_REQUEST.getReasonPhrase(), errorMessages);
-//            return Response.status(Response.Status.BAD_REQUEST).entity(result).build();
-//        }
-//        LOG.info("Validated successful");
-//
-//        UserWebService userWebService = getUserWebService();
-//
-//        LOG.info("Prepare request");
-//        ReqBase reqBase = prepareApiReqBase(userChangePassword);
-//
-//        LOG.info("Generate crypto password and new password");
-//        byte[] passwordBytes = Core.cryptoPasswordCreateObj(userChangePassword.getLogin(), userChangePassword.getPassword());
-//        String passwordBase64Binary = DatatypeConverter.printBase64Binary(passwordBytes);
-//        byte[] newPasswordBytes = Core.cryptoPasswordCreateObj(userChangePassword.getLogin(), userChangePassword.getNewPassword());
-//        String newPasswordBase64Binary = DatatypeConverter.printBase64Binary(newPasswordBytes);
-//        LOG.info("Generated crypto password and new password");
-//
-//        LOG.info("Authenticate...");
-//        reqBase.setSid(userChangePassword.getSid());
-//        SessionRp sessionRp = userWebService.changePass(reqBase, userChangePassword.getLogin(), passwordBase64Binary, newPasswordBase64Binary);
-//
-//        LOG.info("Check result authenticate");
-//        //TODO: Handle result
-//
-//        return Response.ok(prepareResult(sessionRp.getErrCode(), sessionRp.getErrMsg(), sessionRp)).build();
-//
-//    }
 
     private UserWebService getUserWebService() {
         LOG.info("Prepare user web-service");

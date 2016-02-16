@@ -10,14 +10,9 @@ import java.io.Serializable;
  */
 public class BaseRequest implements Serializable{
 
-    @NotNull(message = "Not be nulll")
     protected String fs;
-
-    @NotNull(message = "Not be nulll")
     protected String sid;
-
     protected String language;
-
     protected String sessionFrom;
 
     public BaseRequest() {

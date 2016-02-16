@@ -7,13 +7,11 @@ import com.skywell.banking.api.ws.product.ClientFullProductRp;
 import com.skywell.banking.api.ws.product.ClientProductListRp;
 import com.skywell.banking.api.ws.product.ClientTransListRp;
 import com.skywell.banking.views.BaseRequest;
-import com.skywell.banking.views.Result;
-import com.skywell.banking.views.errors.Error;
 import org.apache.log4j.Logger;
 
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 /**
  * Created by uartan on 09.02.2016.
@@ -27,23 +25,14 @@ public class ProductApiController extends BaseController {
 
     @GET
     @Path(value = "/products")
-    public Response getClientProductList(@QueryParam("sid") String sid,
+    public Response getClientProductList(@NotNull @QueryParam("sid") String sid,
                                          @QueryParam("language") String language,
                                          @QueryParam("sessionFrom") String sessionFrom) {
 
         BaseRequest baseRequest = new BaseRequest(fs, sid, language, sessionFrom);
-        List<Error> errorMessages = validate(baseRequest);
-
-        if (!errorMessages.isEmpty()) {
-            LOG.info("Validated failure");
-            Result result = prepareResult(Response.Status.BAD_REQUEST.getStatusCode(), Response.Status.BAD_REQUEST.getReasonPhrase(), errorMessages);
-            return Response.status(Response.Status.BAD_REQUEST).entity(result).build();
-        }
-        LOG.info("Validated successful");
 
         ProductWebService productWebService = getProductWebService();
 
-        LOG.info("Prepare request");
         ReqBase reqBase = prepareApiReqBase(baseRequest);
 
         LOG.info("Sending request...");
@@ -58,24 +47,15 @@ public class ProductApiController extends BaseController {
 
     @GET
     @Path(value = "/products/{productId}")
-    public Response getClientProduct(@QueryParam("sid") String sid,
+    public Response getClientProduct(@NotNull @QueryParam("sid") String sid,
                                      @QueryParam("language") String language,
                                      @QueryParam("sessionFrom") String sessionFrom,
-                                     @PathParam("productId") long productId) {
+                                     @NotNull @PathParam("productId") long productId) {
 
         BaseRequest baseRequest = new BaseRequest(fs, sid, language, sessionFrom);
-        List<Error> errorMessages = validate(baseRequest);
-
-        if (!errorMessages.isEmpty()) {
-            LOG.info("Validated failure");
-            Result result = prepareResult(Response.Status.BAD_REQUEST.getStatusCode(), Response.Status.BAD_REQUEST.getReasonPhrase(), errorMessages);
-            return Response.status(Response.Status.BAD_REQUEST).entity(result).build();
-        }
-        LOG.info("Validated successful");
 
         ProductWebService productWebService = getProductWebService();
 
-        LOG.info("Prepare request");
         ReqBase reqBase = prepareApiReqBase(baseRequest);
 
         LOG.info("Sending request...");
@@ -90,20 +70,12 @@ public class ProductApiController extends BaseController {
 
     @GET
     @Path(value = "/products/{productId}/transactions")
-    public Response getClientTransactions(@QueryParam("sid") String sid,
+    public Response getClientTransactions(@NotNull(message = "Sid must be not null") @QueryParam("sid") String sid,
                                           @QueryParam("language") String language,
                                           @QueryParam("sessionFrom") String sessionFrom,
-                                          @PathParam("productId") long productId) {
+                                          @NotNull(message = "ProductId must be not null") @PathParam("productId") long productId) {
 
         BaseRequest baseRequest = new BaseRequest(fs, sid, language, sessionFrom);
-        List<Error> errorMessages = validate(baseRequest);
-
-        if (!errorMessages.isEmpty()) {
-            LOG.info("Validated failure");
-            Result result = prepareResult(Response.Status.BAD_REQUEST.getStatusCode(), Response.Status.BAD_REQUEST.getReasonPhrase(), errorMessages);
-            return Response.status(Response.Status.BAD_REQUEST).entity(result).build();
-        }
-        LOG.info("Validated successful");
 
         ProductWebService productWebService = getProductWebService();
 
@@ -124,15 +96,6 @@ public class ProductApiController extends BaseController {
     @Path(value = "/products")
     public Response getTempClientProductList(BaseRequest productReq) {
 
-        List<Error> errorMessages = validate(productReq);
-
-        if (!errorMessages.isEmpty()) {
-            LOG.info("Validated failure");
-            Result result = prepareResult(Response.Status.BAD_REQUEST.getStatusCode(), Response.Status.BAD_REQUEST.getReasonPhrase(), errorMessages);
-            return Response.status(Response.Status.BAD_REQUEST).entity(result).build();
-        }
-        LOG.info("Validated successful");
-
         ProductWebService productWebService = getProductWebService();
 
         LOG.info("Prepare request");
@@ -152,15 +115,6 @@ public class ProductApiController extends BaseController {
     @Path(value = "/products/{productId}")
     public Response getClientProductList(BaseRequest productReq, @PathParam("productId") long productId) {
 
-        List<Error> errorMessages = validate(productReq);
-
-        if (!errorMessages.isEmpty()) {
-            LOG.info("Validated failure");
-            Result result = prepareResult(Response.Status.BAD_REQUEST.getStatusCode(), Response.Status.BAD_REQUEST.getReasonPhrase(), errorMessages);
-            return Response.status(Response.Status.BAD_REQUEST).entity(result).build();
-        }
-        LOG.info("Validated successful");
-
         ProductWebService productWebService = getProductWebService();
 
         LOG.info("Prepare request");
@@ -179,15 +133,6 @@ public class ProductApiController extends BaseController {
     @POST
     @Path(value = "/products/{productId}/transactions")
     public Response getClientTransactions(BaseRequest productReq, @PathParam("productId") long productId) {
-
-        List<Error> errorMessages = validate(productReq);
-
-        if (!errorMessages.isEmpty()) {
-            LOG.info("Validated failure");
-            Result result = prepareResult(Response.Status.BAD_REQUEST.getStatusCode(), Response.Status.BAD_REQUEST.getReasonPhrase(), errorMessages);
-            return Response.status(Response.Status.BAD_REQUEST).entity(result).build();
-        }
-        LOG.info("Validated successful");
 
         ProductWebService productWebService = getProductWebService();
 

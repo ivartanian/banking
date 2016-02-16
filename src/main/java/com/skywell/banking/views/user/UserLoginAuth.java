@@ -2,18 +2,18 @@ package com.skywell.banking.views.user;
 
 import com.skywell.banking.views.BaseRequest;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by viv on 12.02.2016.
  */
 public class UserLoginAuth extends BaseRequest {
 
+    @NotNull(message = "{NotNull.UserLoginAuth.login}")
     protected String login;
 
+    @NotNull(message = "{NotNull.UserLoginAuth.password}")
     protected String password;
-
-    private String reqId;
-
-    private String smsPass;
 
     public String getLogin() {
         return login;
@@ -30,22 +30,5 @@ public class UserLoginAuth extends BaseRequest {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public String getReqId() {
-        return reqId;
-    }
-
-    public void setReqId(String reqId) {
-        this.reqId = reqId;
-    }
-
-    public String getSmsPass() {
-        return smsPass;
-    }
-
-    public void setSmsPass(String smsPass) {
-        this.smsPass = smsPass;
-    }
-
 
 }

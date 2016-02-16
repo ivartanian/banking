@@ -1,6 +1,9 @@
 
 package com.skywell.banking.api.ws.user;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.skywell.banking.config.CustomJsonSerializer;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
@@ -45,6 +48,8 @@ public class Session {
 
     protected String sid;
     protected String lang;
+
+    @JsonSerialize(using = CustomJsonSerializer.class)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar expireDate;
     protected SessionState state;
