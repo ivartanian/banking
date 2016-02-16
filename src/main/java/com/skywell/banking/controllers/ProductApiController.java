@@ -25,7 +25,7 @@ public class ProductApiController extends BaseController {
 
     @GET
     @Path(value = "/products")
-    public Response getClientProductList(@NotNull @QueryParam("sid") String sid,
+    public Response getClientProductList(@NotNull(message = "{NotEmpty.BaseRequest.sid}") @QueryParam("sid") String sid,
                                          @QueryParam("language") String language,
                                          @QueryParam("sessionFrom") String sessionFrom) {
 
@@ -47,10 +47,10 @@ public class ProductApiController extends BaseController {
 
     @GET
     @Path(value = "/products/{productId}")
-    public Response getClientProduct(@NotNull @QueryParam("sid") String sid,
+    public Response getClientProduct(@NotNull(message = "{NotEmpty.BaseRequest.sid}") @QueryParam("sid") String sid,
                                      @QueryParam("language") String language,
                                      @QueryParam("sessionFrom") String sessionFrom,
-                                     @NotNull @PathParam("productId") long productId) {
+                                     @PathParam("productId") long productId) {
 
         BaseRequest baseRequest = new BaseRequest(fs, sid, language, sessionFrom);
 
@@ -70,10 +70,10 @@ public class ProductApiController extends BaseController {
 
     @GET
     @Path(value = "/products/{productId}/transactions")
-    public Response getClientTransactions(@NotNull(message = "Sid must be not null") @QueryParam("sid") String sid,
+    public Response getClientTransactions(@NotNull(message = "{NotEmpty.BaseRequest.sid}") @QueryParam("sid") String sid,
                                           @QueryParam("language") String language,
                                           @QueryParam("sessionFrom") String sessionFrom,
-                                          @NotNull(message = "ProductId must be not null") @PathParam("productId") long productId) {
+                                          @PathParam("productId") long productId) {
 
         BaseRequest baseRequest = new BaseRequest(fs, sid, language, sessionFrom);
 

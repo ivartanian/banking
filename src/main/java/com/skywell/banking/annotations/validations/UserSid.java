@@ -21,7 +21,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = UserSid.UserSidValidator.class)
 public @interface UserSid {
 
-    String message() default "{NotNull.BaseRequest.sid}";
+    String message() default "{NotEmpty.BaseRequest.sid}";
 
     Class<?>[] groups() default {};
 

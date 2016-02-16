@@ -35,20 +35,6 @@ public class UserApiController extends BaseController{
     private static final Logger LOG = Logger.getLogger(UserApiController.class);
 
     @POST
-    @Path(value = "/authenticate1")
-    @JsonFormat(pattern = "dd.MM.yyyy H:m:s")
-    public Response authenticate1(UserLoginAuth userLoginAuth) {
-
-        Session session = new Session();
-        session.setExpireDate(new XMLGregorianCalendarImpl(new GregorianCalendar()));
-        SessionRp sessionRp = new SessionRp();
-        sessionRp.setResult(session);
-
-        return Response.ok(sessionRp).build();
-
-    }
-
-    @POST
     @Path(value = "/authenticate")
     public Response authenticate(@Valid UserLoginAuth userLoginAuth) {
 
@@ -63,6 +49,9 @@ public class UserApiController extends BaseController{
 
         LOG.info("Authenticate...");
         SessionRp sessionRp = userWebService.authenticate(reqBase, userLoginAuth.getLogin(), base64Binary);
+
+        LOG.info("!!!!!!!!!!!!!getExpireDate" + sessionRp.getResult().getExpireDate());
+        LOG.info("!!!!!!!!!!!!!toXMLFormat" + sessionRp.getResult().getExpireDate().toXMLFormat());
 
         LOG.info("Check result authenticate");
         //TODO: Handle result

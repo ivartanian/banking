@@ -1,6 +1,7 @@
 package com.skywell.banking.views.user;
 
 import com.skywell.banking.views.BaseRequest;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
 
@@ -10,9 +11,11 @@ import javax.validation.constraints.NotNull;
 public class UserLoginAuth extends BaseRequest {
 
     @NotNull(message = "{NotNull.UserLoginAuth.login}")
+    @NotEmpty(message = "{NotEmpty.UserLoginAuth.login}")
     protected String login;
 
     @NotNull(message = "{NotNull.UserLoginAuth.password}")
+    @NotEmpty(message = "{NotEmpty.UserLoginAuth.password}")
     protected String password;
 
     public String getLogin() {
