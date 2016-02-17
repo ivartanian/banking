@@ -1,8 +1,5 @@
 package com.skywell.banking.annotations.validations;
 
-import com.skywell.banking.views.BaseRequest;
-import com.skywell.banking.views.user.UserLoginAuth;
-
 import javax.validation.Constraint;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -18,23 +15,25 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UserSid.UserSidValidator.class)
-public @interface UserSid {
+@Constraint(validatedBy = NotEmptyNull.FieldValidator.class)
+public @interface NotEmptyNull {
 
-    String message() default "{NotEmpty.BaseRequest.sid}";
+    String message() default "{NotEmptyNull.String}";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
 
-    @Provider
-    class UserSidValidator implements ConstraintValidator<UserSid, BaseRequest> {
+    String field() default "";
 
-        public void initialize(UserSid userSid) {
+    @Provider
+    class FieldValidator implements ConstraintValidator<NotEmptyNull, String> {
+
+        public void initialize(NotEmptyNull userSid) {
         }
 
-        public boolean isValid(BaseRequest value, ConstraintValidatorContext context) {
-            return value != null && value.getSid() != null && !value.getSid().isEmpty();
+        public boolean isValid(String value, ConstraintValidatorContext context) {
+            return value != null && !value.isEmpty();
         }
     }
 

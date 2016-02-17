@@ -1,0 +1,21 @@
+{
+  "baseRequest": {
+    "language": "US",
+    "login": "1",
+    "password": "1",
+    "reqId": "",
+    "sessionFrom": "tel",
+    "sid": "mb.bd1ec7eb-1b37-479e-b163-168280a212d1",
+    "smsPass": ""
+  },
+  "resvLocalCard": "1111111111111111",
+  "operAmount": 333,
+  "operCurrencyId": "980",
+  "note": "test",
+  "varList": [
+    {
+      "alias": "1",
+      "value": "1"
+    }
+  ]
+}

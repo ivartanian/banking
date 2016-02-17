@@ -1,15 +1,20 @@
 package com.skywell.banking.controllers;
 
+import com.skywell.banking.annotations.validations.NotEmptyNull;
 import com.skywell.banking.api.ws.ProductWebService;
 import com.skywell.banking.api.ws.ProductWebService_Service;
 import com.skywell.banking.api.ws.ReqBase;
 import com.skywell.banking.api.ws.product.ClientFullProductRp;
 import com.skywell.banking.api.ws.product.ClientProductListRp;
 import com.skywell.banking.api.ws.product.ClientTransListRp;
+import com.skywell.banking.api.ws.product.OperRp;
 import com.skywell.banking.views.BaseRequest;
+import com.skywell.banking.views.product.CheckOperOtp;
+import com.skywell.banking.views.product.ClientProduct;
+import com.skywell.banking.views.product.LocalCardProduct;
 import org.apache.log4j.Logger;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
@@ -25,7 +30,7 @@ public class ProductApiController extends BaseController {
 
     @GET
     @Path(value = "/products")
-    public Response getClientProductList(@NotNull(message = "{NotEmpty.BaseRequest.sid}") @QueryParam("sid") String sid,
+    public Response getClientProductList(@NotEmptyNull(field = "sid") @QueryParam("sid") String sid,
                                          @QueryParam("language") String language,
                                          @QueryParam("sessionFrom") String sessionFrom) {
 
@@ -47,7 +52,7 @@ public class ProductApiController extends BaseController {
 
     @GET
     @Path(value = "/products/{productId}")
-    public Response getClientProduct(@NotNull(message = "{NotEmpty.BaseRequest.sid}") @QueryParam("sid") String sid,
+    public Response getClientProduct(@NotEmptyNull(field = "sid") @QueryParam("sid") String sid,
                                      @QueryParam("language") String language,
                                      @QueryParam("sessionFrom") String sessionFrom,
                                      @PathParam("productId") long productId) {
@@ -70,7 +75,7 @@ public class ProductApiController extends BaseController {
 
     @GET
     @Path(value = "/products/{productId}/transactions")
-    public Response getClientTransactions(@NotNull(message = "{NotEmpty.BaseRequest.sid}") @QueryParam("sid") String sid,
+    public Response getClientTransactions(@NotEmptyNull(field = "sid") @QueryParam("sid") String sid,
                                           @QueryParam("language") String language,
                                           @QueryParam("sessionFrom") String sessionFrom,
                                           @PathParam("productId") long productId) {
@@ -93,59 +98,61 @@ public class ProductApiController extends BaseController {
     }
 
     @POST
-    @Path(value = "/products")
-    public Response getTempClientProductList(BaseRequest productReq) {
+    @Path(value = "/products/{productId}/operations/sendclientproduct")
+    public Response createOperSendClientProduct(@Valid ClientProduct productReq, @PathParam("productId") long productId) {
 
         ProductWebService productWebService = getProductWebService();
 
         LOG.info("Prepare request");
-        ReqBase reqBase = prepareApiReqBase(productReq);
+        ReqBase reqBase = prepareApiReqBase(productReq.getBaseRequest());
 
         LOG.info("Sending request...");
-        ClientProductListRp clientProductList = productWebService.getClientProductList(reqBase);
+        OperRp operSendClientProduct = productWebService.createOperSendClientProduct(reqBase, productId,
+                productReq.getOperAmount(), productReq.getOperCurrencyId(), productReq.getNote(), productReq.getVarList(), productReq.getResvClientProductId());
 
         LOG.info("Check result");
         //TODO: Handle result
 
-        return Response.ok(clientProductList).build();
+        return Response.ok(operSendClientProduct).build();
 
     }
 
     @POST
-    @Path(value = "/products/{productId}")
-    public Response getClientProductList(BaseRequest productReq, @PathParam("productId") long productId) {
+    @Path(value = "/products/{productId}/operations/sendlocalcard")
+    public Response createOperSendLocalCard(@Valid LocalCardProduct productReq, @PathParam("productId") long productId) {
 
         ProductWebService productWebService = getProductWebService();
 
         LOG.info("Prepare request");
-        ReqBase reqBase = prepareApiReqBase(productReq);
+        ReqBase reqBase = prepareApiReqBase(productReq.getBaseRequest());
 
         LOG.info("Sending request...");
-        ClientFullProductRp clientFullProduct = productWebService.getClientFullProduct(reqBase, productId);
+        OperRp operSendClientProduct = productWebService.createOperSendLocalCard(reqBase, productId,
+                productReq.getOperAmount(), productReq.getOperCurrencyId(), productReq.getNote(), productReq.getVarList(), productReq.getResvLocalCard());
 
         LOG.info("Check result");
         //TODO: Handle result
 
-        return Response.ok(clientFullProduct).build();
+        return Response.ok(operSendClientProduct).build();
 
     }
 
     @POST
-    @Path(value = "/products/{productId}/transactions")
-    public Response getClientTransactions(BaseRequest productReq, @PathParam("productId") long productId) {
+    @Path(value = "/products/operations/checkOperOtp")
+    public Response checkOperOtp(@Valid CheckOperOtp checkOperProduct) {
 
         ProductWebService productWebService = getProductWebService();
 
         LOG.info("Prepare request");
-        ReqBase reqBase = prepareApiReqBase(productReq);
+        ReqBase reqBase = prepareApiReqBase(checkOperProduct.getBaseRequest());
 
         LOG.info("Sending request...");
-        ClientTransListRp statementMini = productWebService.getStatementMini(reqBase, productId);
+        OperRp operSendClientProduct = productWebService.checkOperOtp(reqBase, checkOperProduct.getOtpReqId(), checkOperProduct.getOtpPass());
 
         LOG.info("Check result");
         //TODO: Handle result
 
-        return Response.ok(statementMini).build();
+        return Response.ok(operSendClientProduct).build();
 
     }
 

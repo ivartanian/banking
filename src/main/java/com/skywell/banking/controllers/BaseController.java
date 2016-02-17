@@ -20,17 +20,17 @@ public abstract class BaseController {
 
     protected String fs;
 
-    protected ReqBase prepareApiReqBase(BaseRequest baseUserAuth) {
+    protected ReqBase prepareApiReqBase(BaseRequest baseRequest) {
         LOG.info("Prepare api request");
         ReqBase reqBase = new ReqBase();
         reqBase.setFs(fs);
-        if (baseUserAuth != null){
-            if (baseUserAuth.getFs() != null && !baseUserAuth.getFs().isEmpty()){
-                reqBase.setFs(baseUserAuth.getFs());
+        if (baseRequest != null){
+            if (baseRequest.getFs() != null && !baseRequest.getFs().isEmpty()){
+                reqBase.setFs(baseRequest.getFs());
             }
-            reqBase.setLang(baseUserAuth.getLanguage());
-            reqBase.setSid(baseUserAuth.getSid());
-            reqBase.setSessionFrom(baseUserAuth.getSessionFrom());
+            reqBase.setLang(baseRequest.getLanguage());
+            reqBase.setSid(baseRequest.getSid());
+            reqBase.setSessionFrom(baseRequest.getSessionFrom());
         }
         LOG.info("Prepared api request");
         return reqBase;

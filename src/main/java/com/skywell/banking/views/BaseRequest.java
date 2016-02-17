@@ -1,5 +1,6 @@
 package com.skywell.banking.views;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.log4j.Logger;
 
 import javax.validation.constraints.NotNull;
@@ -8,6 +9,7 @@ import java.io.Serializable;
 /**
  * Created by viv on 12.02.2016.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BaseRequest implements Serializable{
 
     protected String fs;

@@ -1,33 +1,53 @@
 {
-  "result": {
-    "cardNumberMasked": "4148xxxxxxxx0844",
-    "cardExpireDate": 1509400800000,
-    "cardTypeId": 1,
-    "cardLogo": null,
-    "cardKindId": 1,
-    "cardStateId": 1,
-    "ownAmount": 0,
-    "creditAmount": 40000,
-    "creditLimit": 100000,
-    "holdAmount": 0,
-    "cardAccount": "26251111222244",
-    "cardHolderName": "Nick Tsuprick",
-    "interestRate": "2.5",
-    "limitDailyAmount": 0,
-    "limitDailyCount": 0,
-    "smsServiceEnabled": false,
-    "id": 3,
-    "typeId": 2,
-    "typeAlias": "card",
-    "bankProductId": 7,
-    "currencyId": 980,
-    "currencyAlias": "UAH",
-    "name": "Срібний гаманець",
-    "balance": 60000,
-    "syncBalance": 1444979595000,
-    "agrNumber": "ZA4464/465",
-    "agrDate": 1425160800000
-  },
   "errCode": 0,
-  "errMsg": null
+  "errMsg": null,
+  "result": {
+    "id": 10401,
+    "operType": "sendCountryCard",
+    "clientId": 1,
+    "clientProductId": 3,
+    "clientProductName": null,
+    "bankProductId": 7,
+    "bankProductName": "Золотий гаманець",
+    "bankProductTypeId": 2,
+    "bankProductTypeAlias": "card",
+    "operCreate": 1455698000000,
+    "operExec": null,
+    "operRollback": null,
+    "extrnId": null,
+    "operStateId": 2,
+    "operStateNote": null,
+    "name": null,
+    "note": "test",
+    "operAmount": 333,
+    "operCurrencyId": 980,
+    "operCurrencyAlias": "UAH",
+    "interestAmount": 0,
+    "interestCurrencyId": 0,
+    "interestCurrencyAlias": null,
+    "varList": [
+      {
+        "alias": "resv.local.card.no",
+        "value": "1111111111111111"
+      },
+      {
+        "alias": "resv.local.card.masked",
+        "value": "1111********1111"
+      }
+    ],
+    "otpReq": {
+      "userOtp": {
+        "id": 1,
+        "typeId": 1,
+        "typeAlias": "sms",
+        "cfgValue": "+380672454433"
+      },
+      "reqId": "mb.b3e8698d-e739-4b2e-bd23-aac9d7dacf0c",
+      "reqType": "oper",
+      "reqInfo": null,
+      "otpExpire": 1455698120000,
+      "errCounter": 0,
+      "errCounterMax": 3
+    }
+  }
 }

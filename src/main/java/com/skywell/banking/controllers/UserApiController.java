@@ -1,6 +1,9 @@
 package com.skywell.banking.controllers;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skywell.banking.annotations.validations.UserSid;
 import com.skywell.banking.api.core.Core;
 import com.skywell.banking.api.ws.ReqBase;
@@ -9,6 +12,7 @@ import com.skywell.banking.api.ws.UserWebService_Service;
 import com.skywell.banking.api.ws.user.Session;
 import com.skywell.banking.api.ws.user.SessionRp;
 import com.skywell.banking.views.user.UserLoginAuth;
+import com.skywell.banking.views.user.UserPinCheckAuth;
 import com.skywell.banking.views.user.UserSmsCheckAuth;
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import org.apache.log4j.Logger;
@@ -50,9 +54,6 @@ public class UserApiController extends BaseController{
         LOG.info("Authenticate...");
         SessionRp sessionRp = userWebService.authenticate(reqBase, userLoginAuth.getLogin(), base64Binary);
 
-        LOG.info("!!!!!!!!!!!!!getExpireDate" + sessionRp.getResult().getExpireDate());
-        LOG.info("!!!!!!!!!!!!!toXMLFormat" + sessionRp.getResult().getExpireDate().toXMLFormat());
-
         LOG.info("Check result authenticate");
         //TODO: Handle result
 
@@ -71,6 +72,29 @@ public class UserApiController extends BaseController{
         LOG.info("Authenticate...");
         reqBase.setSid(userSmsCheckAuth.getSid());
         SessionRp sessionRp = userWebService.checkAuthOtp(reqBase, userSmsCheckAuth.getReqId(), userSmsCheckAuth.getSmsPass());
+
+        LOG.info("Check result authenticate");
+        //TODO: Handle result
+
+        return Response.ok(sessionRp).build();
+
+    }
+
+    @POST
+    @Path(value = "/authenticate/pincheck")
+    public Response checkAuthOtpPinCheck(UserPinCheckAuth userPinCheckAuth) {
+
+        UserWebService userWebService = getUserWebService();
+
+        ReqBase reqBase = prepareApiReqBase(userPinCheckAuth);
+
+        LOG.info("Generate crypto login/pin...");
+        byte[] bytes = Core.cryptoPasswordCreateObj(userPinCheckAuth.getLogin(), userPinCheckAuth.getPin());
+        String base64Binary = DatatypeConverter.printBase64Binary(bytes);
+        LOG.info("Generated crypto login/pin");
+
+        LOG.info("Authenticate...");
+        SessionRp sessionRp = userWebService.authenticate(reqBase, userPinCheckAuth.getLogin(), "pin:" + base64Binary);
 
         LOG.info("Check result authenticate");
         //TODO: Handle result

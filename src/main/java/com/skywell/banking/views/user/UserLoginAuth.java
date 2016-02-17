@@ -1,5 +1,6 @@
 package com.skywell.banking.views.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.skywell.banking.views.BaseRequest;
 import org.hibernate.validator.constraints.NotEmpty;
 

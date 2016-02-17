@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skywell.banking.api.core.RspResult;
 import com.skywell.banking.api.ws.ResultRp;
+import com.skywell.banking.views.CustomResultRp;
 import org.apache.log4j.Logger;
 import org.glassfish.jersey.server.validation.ValidationError;
 import org.glassfish.jersey.server.validation.internal.ValidationHelper;
@@ -32,21 +33,14 @@ public class CustomValidationException implements ExceptionMapper<ConstraintViol
 
     @Override
     public Response toResponse(ConstraintViolationException exception) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<String> errors = new ArrayList<>();
+        StringBuilder errors = new StringBuilder();
         List<ValidationError> validationErrors = ValidationHelper.constraintViolationToValidationErrors(exception);
         for (ValidationError validationError : validationErrors) {
-            errors.add(validationError.getMessage());
+            errors.append(validationError.getMessage()).append("; ");
         }
-        String msg = null;
-        try {
-            msg = objectMapper.writeValueAsString(errors);
-            LOG.info(msg);
-        } catch (JsonProcessingException e) {
-            LOG.warn("Could not convert errors to json");
-        }
+        errors.delete(errors.length()-2, errors.length());
         ResultRp resultRp = new ResultRp();
-        resultRp.setErrMsg(msg);
+        resultRp.setErrMsg(errors.toString());
         resultRp.setErrCode(RspResult.CODE_REQ_BAD);
         return Response.status(Response.Status.BAD_REQUEST)
                 .entity(resultRp)
