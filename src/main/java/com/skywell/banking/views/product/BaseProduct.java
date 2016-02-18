@@ -12,7 +12,7 @@ import java.util.List;
  * Created by viv on 12.02.2016.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public abstract class BaseProduct implements Serializable{
+public class BaseProduct implements Serializable{
 
     @UserSid
     protected BaseRequest baseRequest;

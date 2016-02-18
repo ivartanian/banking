@@ -1,0 +1,27 @@
+{
+  "errCode": 0,
+  "errMsg": null,
+  "result": {
+    "id": "1.541",
+    "servType": "balance",
+    "name": "Воля - Київ (ТБ / Iнтернет)",
+    "note": "Сплата за ТБ та інтернет Воля",
+    "logo": null,
+    "amountMin": 100,
+    "amountMax": 100000,
+    "checkAttrList": [
+      {
+        "id": "Account",
+        "attrType": "int",
+        "name": "Номер договору",
+        "hint": "Введiть номер Вашого договору з постачальником",
+        "valueDef": "",
+        "tmpls": "{\"sizeMinMax\":[\"1\",\"12\"]}",
+        "flReadOnly": false,
+        "flNotNull": true,
+        "flHidden": false,
+        "flInfo": true
+      }
+    ]
+  }
+}

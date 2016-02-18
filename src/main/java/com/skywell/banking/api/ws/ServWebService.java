@@ -9,10 +9,8 @@ import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
-import com.skywell.banking.api.ws.serv.AttrValue;
-import com.skywell.banking.api.ws.serv.CategoryListRp;
-import com.skywell.banking.api.ws.serv.ServInfoRp;
-import com.skywell.banking.api.ws.serv.ServOperRp;
+
+import com.skywell.banking.api.ws.serv.*;
 
 
 /**
@@ -57,7 +55,7 @@ public interface ServWebService {
     @WebResult(targetNamespace = "http://cb.ukrpay.net/common/ws/serv")
     @RequestWrapper(localName = "getServList", targetNamespace = "http://cb.ukrpay.net/common/ws/serv", className = "com.skywell.banking.api.ws.serv.GetServList")
     @ResponseWrapper(localName = "getServListResponse", targetNamespace = "http://cb.ukrpay.net/common/ws/serv", className = "com.skywell.banking.api.ws.serv.GetServListResponse")
-    public CategoryListRp getServList(
+    public ServListRp getServList(
         @WebParam(name = "reqBase", targetNamespace = "http://cb.ukrpay.net/common/ws/serv")
         ReqBase reqBase,
         @WebParam(name = "categoryId", targetNamespace = "http://cb.ukrpay.net/common/ws/serv")

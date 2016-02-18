@@ -1,0 +1,51 @@
+{
+  "errCode": 0,
+  "errMsg": null,
+  "list": [
+    {
+      "id": "1.541",
+      "servType": "balance",
+      "name": "Воля - Київ (ТБ / Iнтернет)",
+      "note": "Сплата за ТБ та інтернет Воля",
+      "logo": null,
+      "amountMin": 100,
+      "amountMax": 100000
+    },
+    {
+      "id": "1.404",
+      "servType": "balance",
+      "name": "Воля - Вiнниця",
+      "note": "Сплата за телебачення Воля Вiнниця",
+      "logo": null,
+      "amountMin": 100,
+      "amountMax": 100000
+    },
+    {
+      "id": "1.407",
+      "servType": "balance",
+      "name": "Воля - Львiв",
+      "note": "Сплата за телебачення Воля Львiв",
+      "logo": null,
+      "amountMin": 100,
+      "amountMax": 100000
+    },
+    {
+      "id": "1.474",
+      "servType": "balance",
+      "name": "Воля - Харкiв",
+      "note": "Сплата за телебачення Воля Харкiв",
+      "logo": null,
+      "amountMin": 100,
+      "amountMax": 499900
+    },
+    {
+      "id": "1.701",
+      "servType": "balance",
+      "name": "Воля - Рiвне",
+      "note": "Сплата за телебачення Воля Рiвне",
+      "logo": null,
+      "amountMin": 100,
+      "amountMax": 499900
+    }
+  ]
+}

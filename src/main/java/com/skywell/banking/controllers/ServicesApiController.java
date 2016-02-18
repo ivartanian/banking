@@ -4,6 +4,7 @@ import com.skywell.banking.annotations.validations.NotEmptyNull;
 import com.skywell.banking.api.ws.*;
 import com.skywell.banking.api.ws.serv.CategoryListRp;
 import com.skywell.banking.api.ws.serv.ServInfoRp;
+import com.skywell.banking.api.ws.serv.ServListRp;
 import com.skywell.banking.api.ws.serv.ServOperRp;
 import com.skywell.banking.views.BaseRequest;
 import com.skywell.banking.views.product.CheckOperOtp;
@@ -62,7 +63,7 @@ public class ServicesApiController extends BaseController {
         ReqBase reqBase = prepareApiReqBase(baseRequest);
 
         LOG.info("Sending request...");
-        CategoryListRp servList = servicesWebService.getServList(reqBase, categoryId);
+        ServListRp servList = servicesWebService.getServList(reqBase, categoryId);
 
         LOG.info("Check result");
         //TODO: Handle result

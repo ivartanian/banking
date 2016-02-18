@@ -9,6 +9,7 @@ import com.skywell.banking.api.ws.product.ClientProductListRp;
 import com.skywell.banking.api.ws.product.ClientTransListRp;
 import com.skywell.banking.api.ws.product.OperRp;
 import com.skywell.banking.views.BaseRequest;
+import com.skywell.banking.views.product.BaseProduct;
 import com.skywell.banking.views.product.CheckOperOtp;
 import com.skywell.banking.views.product.ClientProduct;
 import com.skywell.banking.views.product.LocalCardProduct;
@@ -134,6 +135,27 @@ public class ProductApiController extends BaseController {
         //TODO: Handle result
 
         return Response.ok(operSendClientProduct).build();
+
+    }
+
+    @POST
+    @Path(value = "/products/{productId}/operations/createoperpayserv")
+    public Response createOperPayServ(@Valid BaseProduct productReq,
+                                      @PathParam("productId") long productId) {
+
+        ProductWebService productWebService = getProductWebService();
+
+        LOG.info("Prepare request");
+        ReqBase reqBase = prepareApiReqBase(productReq.getBaseRequest());
+
+        LOG.info("Sending request...");
+        OperRp operPayServ = productWebService.createOperPayServ(reqBase, productId,
+                productReq.getOperAmount(), productReq.getOperCurrencyId(), productReq.getNote(), productReq.getVarList());
+
+        LOG.info("Check result");
+        //TODO: Handle result
+
+        return Response.ok(operPayServ).build();
 
     }
 
