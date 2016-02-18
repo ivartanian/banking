@@ -1,0 +1,78 @@
+{
+  "errCode": 0,
+  "errMsg": null,
+  "list": [
+    {
+      "id": 1,
+      "parentId": 0,
+      "name": "Мобільний зв'язок",
+      "logo": "mobile.png",
+      "presentChilds": false,
+      "presentServs": true
+    },
+    {
+      "id": 2,
+      "parentId": 0,
+      "name": "Банківські послуги",
+      "logo": "banks.png",
+      "presentChilds": false,
+      "presentServs": true
+    },
+    {
+      "id": 3,
+      "parentId": 0,
+      "name": "Комунальні послуги",
+      "logo": "utilities.png",
+      "presentChilds": false,
+      "presentServs": true
+    },
+    {
+      "id": 4,
+      "parentId": 0,
+      "name": "Інтернет та ТБ",
+      "logo": "internet.png",
+      "presentChilds": false,
+      "presentServs": true
+    },
+    {
+      "id": 5,
+      "parentId": 0,
+      "name": "Дистрибуція",
+      "logo": "distribution.png",
+      "presentChilds": false,
+      "presentServs": true
+    },
+    {
+      "id": 6,
+      "parentId": 0,
+      "name": "WEB гроші",
+      "logo": "webmoney.png",
+      "presentChilds": false,
+      "presentServs": true
+    },
+    {
+      "id": 7,
+      "parentId": 0,
+      "name": "Ігри та соціальні мережі",
+      "logo": "games.png",
+      "presentChilds": false,
+      "presentServs": true
+    },
+    {
+      "id": 2104,
+      "parentId": 0,
+      "name": "Інтернет та ТБ Воля",
+      "logo": "volia_uk.png",
+      "presentChilds": false,
+      "presentServs": true
+    },
+    {
+      "id": 2623,
+      "parentId": 0,
+      "name": "Услуги сдачи Банк Форвард",
+      "logo": null,
+      "presentChilds": false,
+      "presentServs": true
+    }
+  ]
+}

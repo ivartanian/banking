@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = NotEmptyNull.FieldValidator.class)
 public @interface NotEmptyNull {
 
-    String message() default "{NotEmptyNull.String}";
+    String message() default "{NotEmptyNull.Object}";
 
     Class<?>[] groups() default {};
 
@@ -27,13 +27,20 @@ public @interface NotEmptyNull {
     String field() default "";
 
     @Provider
-    class FieldValidator implements ConstraintValidator<NotEmptyNull, String> {
+    class FieldValidator implements ConstraintValidator<NotEmptyNull, Object> {
 
         public void initialize(NotEmptyNull userSid) {
         }
 
-        public boolean isValid(String value, ConstraintValidatorContext context) {
-            return value != null && !value.isEmpty();
+        public boolean isValid(Object value, ConstraintValidatorContext context) {
+            if (value == null){
+                return false;
+            }
+            if (value instanceof String){
+                String castValue = (String) value;
+                return !castValue.isEmpty();
+            }
+            return true;
         }
     }
 
